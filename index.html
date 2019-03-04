@@ -1,0 +1,95 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.send = function(value) {
+        this.addEventListener("progress", function(){
+            console.log("Loading");
+        }, false);
+        console.log("AA");
+        this.realSend(value);
+    };
+
+    console.log("START");
+
+    var onImgLoad = function(selector, callback){
+        $(selector).each(function(){
+            if (this.complete || /*for IE 10-*/ $(this).height() > 0) {
+                callback.apply(this);
+            }
+            else {
+                $(this).on('load', function(){
+                    callback.apply(this);
+                });
+            }
+        });
+    };
+    onImgLoad('img', function(){
+       console.log("ASD");
+    });
+
+
+        $(document).on('load','img',function(e){
+            console.log(e.type);
+        });
+
+
+</script>
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+<img alt="" class="course-icon" srcset="" src="https://app.worldchefsacademy.com//cdn/img/9523b8080239a7d53917ee39e17a8854.png">
+
