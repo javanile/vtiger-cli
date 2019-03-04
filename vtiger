@@ -1,12 +1,5 @@
 #!/usr/bin/env php
 <?php
-declare(strict_types=1);
-use Bref\Console\Deployer;
-use GuzzleHttp\Psr7\Stream;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
-const DEFAULT_PHP_TARGET_VERSION = '7.2.5';
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -16,22 +9,10 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/../../autoload.php';
 }
 
-use Symfony\Component\Console\Output\OutputInterface;
+use Javanile\VtigerCli\VtigerCli;
 
-$app = new Silly\Application();
+$app = new VtigerCli();
 
-$app->command('greet [name] [--yell]', function ($name, $yell, OutputInterface $output) {
-    if ($name) {
-        $text = 'Hello, '.$name;
-    } else {
-        $text = 'Hello';
-    }
-
-    if ($yell) {
-        $text = strtoupper($text);
-    }
-
-    $output->writeln($text);
-});
+$app->command('greet [name] [--yell]', [$app, 'greet']);
 
 $app->run();

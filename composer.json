@@ -4,10 +4,20 @@
   "type": "project",
   "description": "Command-line utility for Vtiger CRM.",
   "homepage": "https://bref.sh",
-  "keywords": ["bref", "serverless", "aws", "lambda", "faas"],
+  "keywords": ["vtiger", "command-line", "automation", "vtiger-extension", "crm"],
   "bin": [
     "vtiger"
   ],
+  "autoload": {
+    "psr-4": {
+      "Javanile\\VtigerCli\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Javanile\\VtigerCli\\Tests\\": "tests"
+    }
+  },
   "require": {
     "mnapoli/silly": "^1.7"
   },
