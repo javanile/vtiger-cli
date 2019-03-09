@@ -11,7 +11,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 
 use Javanile\VtigerCli\VtigerCli;
 
-$app = new VtigerCli();
+$app = new VtigerCli(getcwd());
 
 $app->command('install', [$app, 'install']);
 $app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);

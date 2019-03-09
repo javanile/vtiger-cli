@@ -17,7 +17,7 @@ $ vendor/bin/vtiger apply
 
 ```bash
 $ docker-compose run vtiger composer install
-$ docker-compose run vtiger phpunit vendor/bin/phpunit
+$ docker-compose run vtiger vendor/bin/phpunit tests
 ```
 
 
