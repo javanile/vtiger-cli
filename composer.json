@@ -15,13 +15,14 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Javanile\\VtigerCli\\Tests\\": "tests"
+      "Javanile\\VtigerCli\\Tests\\": "tests",
+      "Javanile\\VtigerCli\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },
   "require": {
-    "mnapoli/silly": "^1.7"
+    "mnapoli/silly": "^1.5"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.5"
+    "phpunit/phpunit": "^5"
   }
 }

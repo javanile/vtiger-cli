@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  vtiger:
+    build: ./
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "40080:80"
+    volumes:
+      - ./:/app
+    links:
+      - mysql
+
+  adminer:
+    image: javanile/adminer
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "40081:8080"
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:5.5
+    environment:
+      - MYSQL_DATABASE=vtiger
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - mysql:/var/lib/mysql:rw
+      - ./:/vtiger:rw
+
+volumes:
+  mysql:

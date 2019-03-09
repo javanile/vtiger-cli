@@ -13,6 +13,8 @@ use Javanile\VtigerCli\VtigerCli;
 
 $app = new VtigerCli();
 
-$app->command('greet [name] [--yell]', [$app, 'greet']);
+$app->command('install', [$app, 'install']);
+$app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
+$app->command('apply [Callable]', [$app, 'apply']);
 
 $app->run();
