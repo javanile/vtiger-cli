@@ -36,8 +36,11 @@ class VtigerCliTest extends TestCase
             new NullOutput
         );
 
+        $db = $app->loadDatabase(new NullOutput);
 
-
-
+        $stmt = $db->query("SELECT * FROM com_vtiger_workflowtasks_entitymethod");
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            var_dump($row);
+        }
     }
 }
