@@ -5,6 +5,27 @@
 [![codecov](https://codecov.io/gh/javanile/vtiger-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/javanile/vtiger-cli)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9bf441fc44d94bafbbe5f509251acb68)](https://www.codacy.com/app/francescobianco/vtiger-cli?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=javanile/vtiger-cli&amp;utm_campaign=Badge_Grade)
 
+## Get Started
+
+Install vtiger-cli on your work-station
+```bash
+$ composer global require javanile/vtiger-cli
+```
+
+Create a `vtiger.json` file into your work-station and place your existing Vtiger installation path into `vtiger_dir` key as follow  
+```json
+{
+  "vtiger_dir": "/my/web/server/vtigercrm"
+}
+```
+
+Now, type the follow command to check errors, and goog work!
+```bash
+$ vtiger info
+```
+
+## Documentation
+
 ```bash
 $ vendor/bin/vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
 ```
