@@ -42,9 +42,8 @@ class VtigerCliTest extends TestCase
 
         $db = $app->loadDatabase(new NullOutput);
 
-        $stmt = $db->query("SELECT * FROM com_vtiger_workflowtasks_entitymethod");
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            var_dump($row);
-        }
+        $stmt = $db->query("SELECT * FROM com_vtiger_workflowtasks_entitymethod WHERE function_path='extends/autoload.php'");
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $this->assertEquals('\\Javanile\\VtigerCli\\Tests\\Fixtures\\MyClass::myMethod', $row['method_name']);
     }
 }
