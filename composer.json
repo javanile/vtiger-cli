@@ -1,5 +1,6 @@
 {
   "name": "javanile/vtiger-cli",
+  "version": "0.0.1",
   "license": "MIT",
   "type": "project",
   "description": "Command-line utility for Vtiger CRM.",
