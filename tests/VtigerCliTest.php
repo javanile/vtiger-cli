@@ -28,6 +28,9 @@ class VtigerCliTest extends TestCase
 
     public function testAddEntityMethod()
     {
+        $mysql = new MysqlImport($_ENV, ['/var/www/html/vtiger.sql']);
+        $mysql->run();
+
         $app = new VtigerCli(getcwd());
 
         $app->addEntityMethod(
