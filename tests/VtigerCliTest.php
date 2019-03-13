@@ -5,6 +5,7 @@ namespace Javanile\VtigerCli\Tests;
 use Symfony\Component\Console\Output\NullOutput;
 use PHPUnit\Framework\TestCase;
 use Javanile\VtigerCli\VtigerCli;
+use Javanile\MysqlImport\MysqlImport;
 
 class VtigerCliTest extends TestCase
 {
