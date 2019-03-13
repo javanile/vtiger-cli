@@ -189,6 +189,8 @@ class VtigerCli extends Application
 
         $this->database = new PDO($dsn, $inc['dbconfig']['db_username'], $inc['dbconfig']['db_password']);
 
+        $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
         return $this->database;
     }
 }
