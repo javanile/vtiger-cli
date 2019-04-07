@@ -4,6 +4,7 @@ namespace Javanile\VtigerCli;
 
 use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use PDO;
 
 class VtigerCli extends Application
@@ -17,6 +18,11 @@ class VtigerCli extends Application
      *
      */
     protected $vtigerDir;
+
+    /**
+     *
+     */
+    protected $state;
 
     /**
      *
@@ -42,35 +48,17 @@ class VtigerCli extends Application
         parent::__construct('vtiger-cli', 'v0.0.1');
 
         $this->cwd = $cwd;
-        $this->configFile = $this->cwd . '/vtiger.json';
+        $this->config = new Config($this->cwd);
+        $this->database = new Database();
     }
 
     /**
-     * @param $output
+     * VtigerCli constructor.
+     * @param string $cwd
      */
-    private function loadConfig($io)
+    public function info(OutputInterface $io)
     {
-        if (!file_exists($this->configFile)) {
-            return;
-        }
 
-        $this->config = json_decode(file_get_contents($this->configFile), true);
-
-        return $this->config;
-    }
-
-    /**
-     * @return bool|int
-     */
-    private function saveConfig($io)
-    {
-        return file_put_contents(
-            $this->configFile,
-            json_encode(
-                $this->config,
-                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-            )
-        );
     }
 
     /**
@@ -168,29 +156,5 @@ class VtigerCli extends Application
         return $this->vtigerDir;
     }
 
-    /**
-     * @param OutputInterface $output
-     * @return PDO
-     */
-    public function loadDatabase(OutputInterface $io)
-    {
-        if ($this->database !== null) {
-            return $this->database;
-        }
 
-        $inc = $this->loadVtigerConfigInc($io);
-
-        $port = isset($inc['dbconfig']['db_port']) && strlen($inc['dbconfig']['db_port']) > 1
-              ? substr($inc['dbconfig']['db_port'], 1) : '3306';
-
-        $dsn = 'mysql:dbname='.$inc['dbconfig']['db_name'].';'
-             . 'host='.$inc['dbconfig']['db_server'].';'
-             . 'port='.$port;
-
-        $this->database = new PDO($dsn, $inc['dbconfig']['db_username'], $inc['dbconfig']['db_password']);
-
-        $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
-        return $this->database;
-    }
 }
