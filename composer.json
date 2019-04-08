@@ -1,6 +1,6 @@
 {
   "name": "javanile/vtiger-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "type": "project",
   "description": "Command-line utility for Vtiger CRM.",
@@ -22,7 +22,7 @@
   },
   "require": {
     "mnapoli/silly": "^1.5",
-    "javanile/mysql-import": "^0.0.5"
+    "javanile/mysql-import": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^5"
