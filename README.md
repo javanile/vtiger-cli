@@ -12,7 +12,8 @@ Install vtiger-cli on your work-station
 $ composer global require javanile/vtiger-cli
 ```
 
-Create a `vtiger.json` file into your work-station and place your existing Vtiger installation path into `vtiger_dir` key as follow  
+Create a `vtiger.json` file into your work-station then place your existing  
+Vtiger installation path into `vtiger_dir` key as follow  
 ```json
 {
   "vtiger_dir": "/my/web/server/vtigercrm"
