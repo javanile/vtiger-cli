@@ -9,11 +9,11 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/../../autoload.php';
 }
 
-use Javanile\VtigerCli\VtigerCli;
+use Javanile\VtigerCli\VtigerCli as VtigerCliAlias;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
-$cli = new VtigerCli(getcwd());
+$cli = new VtigerCliAlias(getcwd());
 
 $cli->command('info', [$app, 'info']);
 $cli->command('install', [$app, 'install']);

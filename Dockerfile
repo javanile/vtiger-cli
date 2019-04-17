@@ -1,7 +1,7 @@
 FROM javanile/vtiger:7.1.0
 
 RUN apt-get update \
- && apt-get install --no-install-recommends -y git \
+ && apt-get install -y --no-install-recommends git \
  && pecl install xdebug-2.5.5 \
  && docker-php-ext-enable xdebug \
  && curl --silent --show-error https://getcomposer.org/installer | php \

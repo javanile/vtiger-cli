@@ -2,7 +2,7 @@ version: '2'
 
 services:
 
-  vtiger:
+  vtiger: &vtiger
     build: ./
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -30,6 +30,14 @@ services:
     volumes:
       - mysql:/var/lib/mysql:rw
       - ./:/vtiger:rw
+
+  composer:
+    <<: *vtiger
+    entrypoint: ['composer']
+
+  phpunit:
+    <<: *vtiger
+    entrypoint: ['./vendor/bin/phpunit']
 
 volumes:
   mysql:

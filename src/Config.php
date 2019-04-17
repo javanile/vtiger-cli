@@ -9,18 +9,24 @@ use PDO;
 
 class Config
 {
-    private $configFile
+    /**
+     * @var string
+     */
+    protected $configFile;
 
+    /**
+     * Config constructor.
+     * @param $cwd
+     */
     public function __construct($cwd)
     {
         $this->configFile = $this->cwd . '/vtiger.json';
-
     }
 
-     /**
-      * @param $output
-      */
-    private function loadConfig($io)
+    /**
+     * @param $output
+     */
+    public function loadConfig($io)
     {
         if (!file_exists($this->configFile)) {
             return;
@@ -34,7 +40,7 @@ class Config
     /**
      * @return bool|int
      */
-    private function saveConfig($io)
+    public function saveConfig($io)
     {
         return file_put_contents(
             $this->configFile,
