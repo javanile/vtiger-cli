@@ -12,21 +12,58 @@ class Config
     /**
      * @var string
      */
+    protected $workingDir;
+
+    /**
+     * @var string
+     */
     protected $configFile;
 
     /**
-     * Config constructor.
-     * @param $cwd
+     * @var array
      */
-    public function __construct($cwd)
+    protected $config;
+
+
+    /**
+     * Config constructor.
+     *
+     * @param $workingDir
+     */
+    public function __construct($workingDir)
     {
-        $this->configFile = $this->cwd . '/vtiger.json';
+        $this->workingDir = realpath($workingDir);
+        $this->configFile = $workingDir . '/vtiger.json';
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigFile()
+    {
+        return $this->configFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVtigerDir()
+    {
+        return $this->config['vtiger_dir'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkingDir()
+    {
+        return $this->workingDir;
     }
 
     /**
      * @param $output
      */
-    public function loadConfig($io)
+    public function loadConfig(OutputInterface $output)
     {
         if (!file_exists($this->configFile)) {
             return;
@@ -40,7 +77,7 @@ class Config
     /**
      * @return bool|int
      */
-    public function saveConfig($io)
+    public function saveConfig(OutputInterface $outout)
     {
         return file_put_contents(
             $this->configFile,

@@ -9,18 +9,32 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/../../autoload.php';
 }
 
-use Javanile\VtigerCli\VtigerCli as VtigerCliAlias;
+use Javanile\VtigerCli\App;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
-$cli = new VtigerCliAlias(getcwd());
+$app = new App(getcwd());
 
-$cli->command('info', [$app, 'info']);
-$cli->command('install', [$app, 'install']);
-$cli->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
-$cli->command('apply [Callable]', [$app, 'apply']);
+$app->command('info', [$app, 'info']);
 
-$output = new ConsoleOutput();
-$output->getFormatter()->setStyle('error', new OutputFormatterStyle('black', 'red'));
+$out = new ConsoleOutput();
+$out->getFormatter()->setStyle('error', new OutputFormatterStyle('black', 'red'));
 
-$cli->run(null, $output);
+$app->run(null, $out);
+
+/*
+use Javanile\VtigerCli\VtigerCli as App;
+
+use Symfony\Component\Console\Output\OutputInterface;
+
+$app = new App(getcwd());
+
+$app->command('info', function(OutputInterface $io) {
+
+  $io->writeln("asd");
+});
+$app->command('install', [$app, 'install']);
+$app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
+$app->command('apply [Callable]', [$app, 'apply']);
+
+*/

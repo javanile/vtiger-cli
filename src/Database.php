@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use PDO;
 
-class Config
+class Database
 {
     /**
      * @param OutputInterface $output

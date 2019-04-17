@@ -4,15 +4,10 @@ namespace Javanile\VtigerCli;
 
 use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use PDO;
 
 class VtigerCli extends Application
 {
-    /**
-     *
-     */
-    protected $config;
+
 
     /**
      *
@@ -38,28 +33,6 @@ class VtigerCli extends Application
      *
      */
     protected $vtigerConfigIncPath;
-
-    /**
-     * VtigerCli constructor.
-     * @param string $cwd
-     */
-    public function __construct($cwd)
-    {
-        parent::__construct('vtiger-cli', 'v0.0.1');
-
-        $this->cwd = $cwd;
-        $this->config = new Config($this->cwd);
-        $this->database = new Database();
-    }
-
-    /**
-     * VtigerCli constructor.
-     * @param string $cwd
-     */
-    public function info(OutputInterface $io)
-    {
-
-    }
 
     /**
      *
