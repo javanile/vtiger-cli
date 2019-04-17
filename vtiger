@@ -16,25 +16,13 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 $app = new App(getcwd());
 
 $app->command('info', [$app, 'info']);
-
-$out = new ConsoleOutput();
-$out->getFormatter()->setStyle('error', new OutputFormatterStyle('black', 'red'));
-
-$app->run(null, $out);
-
-/*
-use Javanile\VtigerCli\VtigerCli as App;
-
-use Symfony\Component\Console\Output\OutputInterface;
-
-$app = new App(getcwd());
-
-$app->command('info', function(OutputInterface $io) {
-
-  $io->writeln("asd");
-});
 $app->command('install', [$app, 'install']);
 $app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
 $app->command('apply [Callable]', [$app, 'apply']);
 
-*/
+$out = new ConsoleOutput();
+$out->getFormatter()->setStyle('error', new OutputFormatterStyle('red', 'default'));
+$out->getFormatter()->setStyle('info', new OutputFormatterStyle('yellow', 'default'));
+$out->getFormatter()->setStyle('success', new OutputFormatterStyle('green', 'default'));
+
+$app->run(null, $out);

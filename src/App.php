@@ -13,6 +13,16 @@ class App extends SillyApplication
     protected $config;
 
     /**
+     *
+     */
+    protected $state;
+
+    /**
+     *
+     */
+    protected $database;
+
+    /**
      * VtigerCli constructor.
      *
      * @param string $cwd
@@ -22,7 +32,8 @@ class App extends SillyApplication
         parent::__construct('vtiger-cli', '0.0.1');
 
         $this->config = new Config($cwd);
-        //$this->database = new Database();
+        $this->database = new Database();
+        $this->state = new State($this->config, $this->database);
     }
 
     /**
@@ -35,5 +46,19 @@ class App extends SillyApplication
         $output->writeln('  config file: '.$this->config->getConfigFile());
         $output->writeln('  vtiger directory: '.$this->config->getVtigerDir());
         $output->writeln('  working directory: '.$this->config->getWorkingDir());
+    }
+
+    /**
+     * @param OutputInterface $output
+     */
+    public function install(OutputInterface $output)
+    {
+        if (!$this->config->loadConfig($output)) {
+            return;
+        }
+
+        if (!$this->state->install($output)) {
+            $output->writeln('<fail>Installaion fail</fail>');
+        }
     }
 }

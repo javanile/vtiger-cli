@@ -1,3 +1,12 @@
 {
-    "vtiger_dir": "/var/www/html/vtiger"
+    "entrypoint": "entrypoint.php",
+    "vtiger_dir": "/var/www/html/vtiger",
+    "apply": [
+        "\\asdasd\\asasd::asdasd"
+    ],
+    "addEntityMethod": {
+        "Contacts": [
+            "\\asdasd\\asdasd::asdasd"
+        ]
+    }
 }

@@ -75,6 +75,52 @@ class Config
     }
 
     /**
+     * @param $io
+     * @return array
+     */
+    public function loadVtigerConfigInc($output)
+    {
+        if ($this->vtigerConfigInc !== null) {
+            return $this->vtigerConfigInc;
+        }
+
+        $this->loadVtigerDir($io);
+
+        $this->vtigerConfigIncPath = $this->vtigerDir . '/config.inc.php';
+
+        include $this->vtigerConfigIncPath;
+
+        // fix logging because config.inc.php apply vtiger runtime logging
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        $this->vtigerConfigInc = [
+            'dbconfig' => $dbconfig,
+        ];
+
+        return $this->vtigerConfigInc;
+    }
+
+    /**
+     * @param OutputInterface $output
+     * @return PDO
+     */
+    public function loadVtigerDir(OutputInterface $io)
+    {
+        if ($this->vtigerDir !== null) {
+            return $this->vtigerDir;
+        }
+
+        $this->loadConfig($io);
+
+        $this->vtigerDir = $this->config['vtiger_dir'];
+
+        set_include_path($this->vtigerDir);
+
+        return $this->vtigerDir;
+    }
+
+    /**
      * @return bool|int
      */
     public function saveConfig(OutputInterface $outout)
