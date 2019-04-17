@@ -24,6 +24,15 @@ class Config
      */
     protected $config;
 
+    /**
+     * @var
+     */
+    protected $vtigerConfigIncFile;
+
+    /**
+     *
+     */
+    protected $vtigerConfigInc;
 
     /**
      * Config constructor.
@@ -84,11 +93,11 @@ class Config
             return $this->vtigerConfigInc;
         }
 
-        $this->loadVtigerDir($io);
+        $this->loadVtigerDir($output);
 
-        $this->vtigerConfigIncPath = $this->vtigerDir . '/config.inc.php';
+        $this->vtigerConfigIncFile = $this->vtigerDir . '/config.inc.php';
 
-        include $this->vtigerConfigIncPath;
+        include $this->vtigerConfigIncFile;
 
         // fix logging because config.inc.php apply vtiger runtime logging
         error_reporting(E_ALL);

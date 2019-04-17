@@ -2,24 +2,45 @@
 
 namespace Javanile\VtigerCli;
 
-use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use PDO;
 
 class Database
 {
     /**
+     * @var
+     */
+    protected $config;
+
+    /**
+     *
+     */
+    protected $database;
+
+    /**
+     * Database constructor.
+     *
+     * @param $config
+     */
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
+    /**
      * @param OutputInterface $output
      * @return PDO
      */
-    public function loadDatabase(OutputInterface $io)
+    public function loadDatabase(OutputInterface $output)
     {
         if ($this->database !== null) {
             return $this->database;
         }
 
-        $inc = $this->loadVtigerConfigInc($io);
+        $inc = $this->config->loadVtigerConfigInc($output);
+        if (!$inc) {
+            return;
+        }
 
         $port = isset($inc['dbconfig']['db_port']) && strlen($inc['dbconfig']['db_port']) > 1
             ? substr($inc['dbconfig']['db_port'], 1) : '3306';

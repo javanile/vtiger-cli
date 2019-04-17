@@ -10,8 +10,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 }
 
 use Javanile\VtigerCli\App;
-use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Javanile\VtigerCli\Output;
 
 $app = new App(getcwd());
 
@@ -20,9 +19,4 @@ $app->command('install', [$app, 'install']);
 $app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
 $app->command('apply [Callable]', [$app, 'apply']);
 
-$out = new ConsoleOutput();
-$out->getFormatter()->setStyle('error', new OutputFormatterStyle('red', 'default'));
-$out->getFormatter()->setStyle('info', new OutputFormatterStyle('yellow', 'default'));
-$out->getFormatter()->setStyle('success', new OutputFormatterStyle('green', 'default'));
-
-$app->run(null, $out);
+$app->run(null, new Output);
