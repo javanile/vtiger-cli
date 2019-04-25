@@ -58,6 +58,6 @@ $ vendor/bin/vtiger dumpAll
 ### Testing
 
 ```bash
-$ docker-compose run composer install
-$ docker-compose run phpunit tests
+$ docker-compose run --rm vtiger composer install
+$ docker-compose run --rm vtiger phpunit tests
 ```

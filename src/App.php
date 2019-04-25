@@ -8,17 +8,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class App extends SillyApplication
 {
     /**
-     *
+     * Configuration handler.
      */
     protected $config;
 
     /**
-     *
-     */
-    protected $state;
-
-    /**
-     *
+     * Database handler.
      */
     protected $database;
 
@@ -32,8 +27,7 @@ class App extends SillyApplication
         parent::__construct('vtiger-cli', '0.0.1');
 
         $this->config = new Config($cwd);
-        $this->database = new Database();
-        $this->state = new State($this->config, $this->database);
+        $this->database = new Database($this->config);
     }
 
     /**
@@ -57,8 +51,38 @@ class App extends SillyApplication
             return;
         }
 
-        if (!$this->state->install($output)) {
+        $state = new State($this->config, $database);
+
+        if (!$state->install($output)) {
             $output->writeln('<fail>Installaion fail</fail>');
         }
+    }
+
+    /**
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     */
+    public function addEntityMethod($module, $callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $entityMethod = new EntityMethod($this->config, $state);
+
+        return $entityMethod->add($module, $callable, $output);
+    }
+
+    /**
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     */
+    public function apply($module, $callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $entityMethod = new EntityMethod($this->config, $state);
+
+        return $entityMethod->add($module, $callable, $output);
     }
 }

@@ -4,9 +4,9 @@
     "apply": [
         "\\asdasd\\asasd::asdasd"
     ],
-    "addEntityMethod": {
-        "Contacts": [
-            "\\asdasd\\asdasd::asdasd"
-        ]
+    "entity_method": {
+        "Contacts": {
+            "\\Javanile\\VtigerCli\\EntityMethod::logger": "once"
+        }
     }
 }

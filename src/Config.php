@@ -2,10 +2,7 @@
 
 namespace Javanile\VtigerCli;
 
-use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use PDO;
 
 class Config
 {
@@ -71,11 +68,12 @@ class Config
 
     /**
      * @param $output
+     * @return array|mixed
      */
     public function loadConfig(OutputInterface $output)
     {
         if (!file_exists($this->configFile)) {
-            return;
+            return $output->error("Config file '{$this->configFile}' not found.");
         }
 
         $this->config = json_decode(file_get_contents($this->configFile), true);
@@ -114,19 +112,27 @@ class Config
      * @param OutputInterface $output
      * @return PDO
      */
-    public function loadVtigerDir(OutputInterface $io)
+    public function loadVtigerDir(OutputInterface $output)
     {
         if ($this->vtigerDir !== null) {
             return $this->vtigerDir;
         }
 
-        $this->loadConfig($io);
+        $this->loadConfig($output);
 
         $this->vtigerDir = $this->config['vtiger_dir'];
 
         set_include_path($this->vtigerDir);
 
         return $this->vtigerDir;
+    }
+
+    /**
+     * @param $
+     */
+    public function merge($config)
+    {
+        $this->config = array_replace_recursive($this->config, $config);
     }
 
     /**

@@ -21,6 +21,7 @@
     }
   },
   "require": {
+    "ext-json": "*",
     "mnapoli/silly": "^1.5",
     "javanile/mysql-import": "*"
   },

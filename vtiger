@@ -12,6 +12,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 use Javanile\VtigerCli\App;
 use Javanile\VtigerCli\Output;
 
+/** @var App $app */
 $app = new App(getcwd());
 
 $app->command('info', [$app, 'info']);
