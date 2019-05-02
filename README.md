@@ -10,6 +10,10 @@ The ultimate **`vtiger`** command-line tool
 
 ## Get Started
 
+Use `vtiger-cli` is very simple, it adds a professional touch \
+and a lot of time saved to your work. Follow the steps below
+
+---
 **`1`** Install as global `vtiger-cli` on your machine with the following command
 ```bash
 $ composer global require javanile/vtiger-cli
@@ -18,6 +22,7 @@ $ composer global require javanile/vtiger-cli
 > placing `export PATH="$HOME/.composer/vendor/bin:$PATH"` \
 > into your: `~/.bash_profile` (Mac OS users) \
 > into your: `~/.bashrc` (Linux users).
+
 ---
 **`2`** Create a `vtiger.json` file into your work-station then place your existing  
 Vtiger installation path into `vtiger_dir` key as follow  
@@ -26,6 +31,7 @@ Vtiger installation path into `vtiger_dir` key as follow
   "vtiger_dir": "/my/web/server/vtigercrm"
 }
 ```
+
 ---
 **`3`** Now, type the follow command to check errors, and goog work!
 ```bash
