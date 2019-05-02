@@ -43,12 +43,20 @@ class EntityMethod
      */
     public function add($module, $callable, OutputInterface $output)
     {
+        // state to check
+        $state = ["entity_method|{$module}|{$callable}" => 'once'];
+
         // @vtiger({
         global $adb, $log, $dbconfigoption, $dbconfig;
         // });
 
         if (!$this->config->loadVtigerDir($output)) {
             return;
+        }
+
+        $this->state->loadState($output);
+        if (!$this->state->checkState($state)) {
+            return $output->info("[SKIP] ");
         }
 
         $method = $callable;
@@ -61,12 +69,10 @@ class EntityMethod
         $emm->addEntityMethod($module, $method, 'extends/autoload.php', 'vtiger_extends_capture_action');
         // });
 
-        $state = ['entity_method' => [$module => [$callable => 'once']]];
-
         $this->state->merge($state);
         $this->state->saveState($output);
 
-        $this->config->merge($state);
+        $this->config->merge(['entity_method' => [$module => [$callable => 'once']]]);
         $this->config->saveConfig($output);
 
         return true;

@@ -36,7 +36,9 @@ class State
     {
         $this->config = $config;
         $this->database = $database;
-        $this->stateFile = $this->config->getConfigFile();
+
+        $path = pathinfo($this->config->getConfigFile());
+        $this->stateFile = $path['dirname'].'/'.$path['filename'].'.lock';
     }
 
     /**
@@ -67,6 +69,32 @@ class State
     }
 
     /**
+     * Loading state file.
+     */
+    public function loadState(OutputInterface $output)
+    {
+        $this->state = [];
+        $output->info('loading state');
+
+        if (file_exists($this->stateFile)) {
+
+        }
+    }
+
+    /**
+     *
+     */
+    public function checkState($state)
+    {
+        foreach ($state as $stateKey => $stateValue) {
+            if (isset($this->state[$stateKey])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Merge new state on current.
      *
      * @param $state
@@ -86,12 +114,15 @@ class State
     {
         $output->info('update state file');
 
-        return file_put_contents(
-            $this->stateFile,
-            json_encode(
-                $this->state,
-                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-            )
+        $state = json_encode(
+            $this->state,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );
+
+        if (!$state || $state == 'null') {
+            return $output->error("Can't save corrupted state.");
+        }
+
+        return file_put_contents($this->stateFile, $state);
     }
 }

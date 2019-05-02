@@ -160,12 +160,15 @@ class Config
     {
         $output->info('update config file');
 
-        return file_put_contents(
-            $this->configFile,
-            json_encode(
-                $this->config,
-                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-            )
+        $config = json_encode(
+            $this->config,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );
+
+        if (!$config || $config == 'null') {
+            return $output->error("Can't save corrupted config.");
+        }
+
+        return file_put_contents($this->configFile, $config);
     }
 }
