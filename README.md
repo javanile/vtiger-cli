@@ -1,6 +1,6 @@
 # 🛠 vtiger-cli
 
-![vtiger](https://www.vtiger.com/wp-content/uploads/2018/02/logo.png)
+![vtiger](https://www.vtiger.com/wp-content/uploads/2018/02/logo.png) quality tool
 
 The ultimate `vtiger` command-line tool
 
