@@ -1,4 +1,8 @@
 
 docker-compose run --rm vtiger php vtiger addEntityMethod Contacts \\Javanile\\VtigerCli\\EntityMethod::logger
 
-docker-compose run --rm vtiger php vtiger addEntityMethod Contacts \\Javanile\\VtigerCli\\EntityMethod::logger
+docker-compose run --rm vtiger php vtiger apply \\Javanile\\VtigerCli\\Apply::credits
+
+docker-compose run --rm vtiger php vtiger install
+
+docker-compose run --rm vtiger php vtiger setPassword admin Secret99

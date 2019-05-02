@@ -51,7 +51,7 @@ class State
     {
         $output->info('Init state');
 
-        $db = $this->database->loadDatabase();
+        $db = $this->database->loadDatabase($output);
         if ($db) {
             return;
         }
@@ -70,14 +70,22 @@ class State
 
     /**
      * Loading state file.
+     * @param OutputInterface $output
+     * @return array
      */
     public function loadState(OutputInterface $output)
     {
         $this->state = [];
         $output->info('loading state');
 
-        if (file_exists($this->stateFile)) {
+        if (!file_exists($this->stateFile)) {
+            return $this->state;
+        }
 
+        $this->state = json_decode(file_get_contents($this->stateFile), true);
+
+        if (!is_array($this->state)) {
+            return $output->error("State file '{$this->stateFile}' is empty or corrupted.");
         }
     }
 

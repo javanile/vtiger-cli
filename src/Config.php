@@ -141,6 +141,22 @@ class Config
     }
 
     /**
+     * @return array|mixed
+     */
+    public function getApply()
+    {
+        return isset($this->config['apply']) && is_array($this->config['apply']) ? $this->config['apply'] : [];
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getEntityMethod()
+    {
+        return isset($this->config['entity_method']) && is_array($this->config['entity_method']) ? $this->config['entity_method'] : [];
+    }
+
+    /**
      * Merge additional config on current config.
      *
      * @param $config

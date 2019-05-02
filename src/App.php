@@ -51,10 +51,22 @@ class App extends SillyApplication
             return;
         }
 
-        $state = new State($this->config, $database);
+        $state = new State($this->config, $this->database);
 
-        if (!$state->install($output)) {
+        if (!$state->init($output)) {
             $output->writeln('<fail>Installaion fail</fail>');
+        }
+
+        $apply = new Apply($this->config, $state);
+        foreach ($this->config->getApply() as $callable => $mode) {
+            $apply->apply($callable, $output);
+        }
+
+        $entityMethod = new EntityMethod($this->config, $state);
+        foreach ($this->config->getEntityMethod() as $entityMethods) {
+            foreach ($entityMethods as $module => $callable) {
+                $entityMethod->add($module, $callable, $output);
+            }
         }
     }
 
@@ -74,16 +86,17 @@ class App extends SillyApplication
     }
 
     /**
+     * Apply code execution to vtiger.
      *
-     * @param $module
      * @param $callable
      * @param OutputInterface $output
+     * @return
      */
-    public function apply($module, $callable, OutputInterface $output)
+    public function apply($callable, OutputInterface $output)
     {
         $state = new State($this->config, $this->database);
-        $entityMethod = new EntityMethod($this->config, $state);
+        $apply = new Apply($this->config, $state);
 
-        return $entityMethod->add($module, $callable, $output);
+        return $apply->apply($callable, $output);
     }
 }

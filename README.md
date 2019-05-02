@@ -28,31 +28,35 @@ $ vtiger info
 ## Documentation
 
 ```bash
-$ vendor/bin/vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
+$ vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
 ```
 
 ```bash
-$ vendor/bin/vtiger apply \\MyPackage\\MyClass::myMethod
+$ vtiger apply \\MyPackage\\MyClass::myMethod
 ```
 
 ```bash
-$ vendor/bin/vtiger install
+$ vtiger install
 ```
 
 ```bash
-$ vendor/bin/vtiger setPassword admin mypass
+$ vtiger setPassword admin mypass
 ```
 
 ```bash
-$ vendor/bin/vtiger dumpDatabase
+$ vtiger dumpDatabase
 ```
 
 ```bash
-$ vendor/bin/vtiger dumpFiles
+$ vtiger dumpFiles
 ```
 
 ```bash
-$ vendor/bin/vtiger dumpAll
+$ vtiger dumpAll
+```
+
+```bash
+$ vtiger console
 ```
 
 ### Testing
