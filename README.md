@@ -27,36 +27,82 @@ $ vtiger info
 
 ## Documentation
 
+### addEntityMethod
+
 ```bash
 $ vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
 ```
+
+### apply
 
 ```bash
 $ vtiger apply \\MyPackage\\MyClass::myMethod
 ```
 
+### install
+
 ```bash
 $ vtiger install
 ```
+
+### setPassword
 
 ```bash
 $ vtiger setPassword admin mypass
 ```
 
-```bash
-$ vtiger dumpDatabase
-```
+### exportDatabase
 
 ```bash
-$ vtiger dumpFiles
+$ vtiger exportDatabase 
 ```
 
+### exportStorage
+
 ```bash
-$ vtiger dumpAll
+$ vtiger exportStorage
 ```
+
+### export
+
+```bash
+$ vtiger export
+```
+
+### importDatabase
+
+```bash
+$ vtiger importDatabase
+```
+
+### importStorage
+
+```bash
+$ vtiger importStorage
+```
+
+### import
+
+```bash
+$ vtiger import
+```
+
+### console
+
+Run the Vtiger CRM console  
 
 ```bash
 $ vtiger console
+```
+
+read more 
+* https://community.vtiger.com/help/vtigercrm/developers/vtlib/console-tool.html
+
+
+### help
+
+```bash
+$ vtiger help
 ```
 
 ### Testing
