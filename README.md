@@ -1,8 +1,6 @@
 # 🛠 vtiger-cli
 
-![vtiger](https://www.vtiger.com/wp-content/uploads/2018/02/logo.png) quality tool
-
-The ultimate `vtiger` command-line tool
+The ultimate ![vtiger](https://github.com/javanile/vtiger-cli/raw/master/vtiger.png) command-line tool
 
 [![StyleCI](https://github.styleci.io/repos/137904364/shield?branch=master)](https://github.styleci.io/repos/137904364)
 [![Build Status](https://travis-ci.org/javanile/vtiger-cli.svg?branch=master)](https://travis-ci.org/javanile/vtiger-cli)
