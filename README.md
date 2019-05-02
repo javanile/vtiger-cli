@@ -12,7 +12,6 @@ The ultimate **`vtiger`** command-line tool
 
 Use `vtiger-cli` is very simple, it adds a professional touch and a lot of time saved to your work.
 
----
 **`1`** Install as global `vtiger-cli` on your machine with the following command
 ```bash
 $ composer global require javanile/vtiger-cli
@@ -22,7 +21,6 @@ $ composer global require javanile/vtiger-cli
 > into your: `~/.bash_profile` (Mac OS users) \
 > into your: `~/.bashrc` (Linux users).
 
----
 **`2`** Create a `vtiger.json` file into your work-station then place your existing  
 Vtiger installation path into `vtiger_dir` key as follow  
 ```json
@@ -31,7 +29,6 @@ Vtiger installation path into `vtiger_dir` key as follow
 }
 ```
 
----
 **`3`** Now, type the follow command to check errors, and goog work!
 ```bash
 $ vtiger info
