@@ -14,9 +14,10 @@ Install vtiger-cli on your work-station
 ```bash
 $ composer global require javanile/vtiger-cli
 ```
-> **NOTE:** placing `export PATH="$HOME/.composer/vendor/bin:$PATH"` \
->       into your: `~/.bash_profile` (Mac OS users) \
->       into your: `~/.bashrc` (Linux users).
+> 🛈 **NOTE:** \
+> placing `export PATH="$HOME/.composer/vendor/bin:$PATH"` \
+> * into your: `~/.bash_profile` (Mac OS users) \
+> * into your: `~/.bashrc` (Linux users).
 
 Create a `vtiger.json` file into your work-station then place your existing  
 Vtiger installation path into `vtiger_dir` key as follow  
