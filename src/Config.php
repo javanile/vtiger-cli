@@ -22,6 +22,11 @@ class Config
     protected $config;
 
     /**
+     *
+     */
+    protected $vtigerDir;
+
+    /**
      * @var
      */
     protected $vtigerConfigIncFile;
@@ -78,6 +83,10 @@ class Config
 
         $this->config = json_decode(file_get_contents($this->configFile), true);
 
+        if (!is_array($this->config)) {
+            return $output->error("Config file '{$this->configFile}' is empty or corrupted.");
+        }
+
         return $this->config;
     }
 
@@ -118,9 +127,13 @@ class Config
             return $this->vtigerDir;
         }
 
-        $this->loadConfig($output);
+        if (!$this->loadConfig($output)) {
+            return '';
+        }
 
         $this->vtigerDir = $this->config['vtiger_dir'];
+
+        $output->info("load vtiger directory: $this->vtigerDir");
 
         set_include_path($this->vtigerDir);
 
@@ -128,7 +141,9 @@ class Config
     }
 
     /**
-     * @param $
+     * Merge additional config on current config.
+     *
+     * @param $config
      */
     public function merge($config)
     {
@@ -136,10 +151,15 @@ class Config
     }
 
     /**
+     * Save config file.
+     *
+     * @param OutputInterface $output
      * @return bool|int
      */
-    public function saveConfig(OutputInterface $outout)
+    public function saveConfig(OutputInterface $output)
     {
+        $output->info('update config file');
+
         return file_put_contents(
             $this->configFile,
             json_encode(

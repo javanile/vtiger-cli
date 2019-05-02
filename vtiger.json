@@ -1,12 +1,1 @@
-{
-    "entrypoint": "entrypoint.php",
-    "vtiger_dir": "/var/www/html/vtiger",
-    "apply": [
-        "\\asdasd\\asasd::asdasd"
-    ],
-    "entity_method": {
-        "Contacts": {
-            "\\Javanile\\VtigerCli\\EntityMethod::logger": "once"
-        }
-    }
-}
+{"vtiger_dir":"/var/www/html/vtiger"}

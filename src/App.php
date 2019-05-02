@@ -59,6 +59,7 @@ class App extends SillyApplication
     }
 
     /**
+     * Add EntityMethod on vtiger database for triggering into workflow.
      *
      * @param $module
      * @param $callable

@@ -23,17 +23,23 @@ class EntityMethod
 
     /**
      * EntityMethod constructor.
+     *
+     * @param $config
+     * @param $state
      */
-    public function __construct($config)
+    public function __construct($config, $state)
     {
         $this->config = $config;
+        $this->state = $state;
     }
 
     /**
+     * Add EntityMethod on vtiger database.
      *
-     * @param $name
-     * @param $yell
+     * @param $module
+     * @param $callable
      * @param OutputInterface $output
+     * @return bool
      */
     public function add($module, $callable, OutputInterface $output)
     {
@@ -41,7 +47,10 @@ class EntityMethod
         global $adb, $log, $dbconfigoption, $dbconfig;
         // });
 
-        $this->config->loadVtigerDir($output);
+        if (!$this->config->loadVtigerDir($output)) {
+            return;
+        }
+
         $method = $callable;
 
         // @vtiger({
@@ -52,9 +61,15 @@ class EntityMethod
         $emm->addEntityMethod($module, $method, 'extends/autoload.php', 'vtiger_extends_capture_action');
         // });
 
-        $this->config->merge(['entity_method' => [$module => [$callable => 'once']]]);
+        $state = ['entity_method' => [$module => [$callable => 'once']]];
 
+        $this->state->merge($state);
+        $this->state->saveState($output);
+
+        $this->config->merge($state);
         $this->config->saveConfig($output);
+
+        return true;
     }
 
     /**

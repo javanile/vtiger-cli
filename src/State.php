@@ -9,6 +9,16 @@ class State
     /**
      *
      */
+    protected $state;
+
+    /**
+     *
+     */
+    protected $stateFile;
+
+    /**
+     *
+     */
     protected $config;
 
     /**
@@ -26,13 +36,19 @@ class State
     {
         $this->config = $config;
         $this->database = $database;
+        $this->stateFile = $this->config->getConfigFile();
     }
 
     /**
+     * Initialize the state.
      *
+     * @param OutputInterface $output
+     * @return bool|int|void
      */
-    public function install()
+    public function init(OutputInterface $output)
     {
+        $output->info('Init state');
+
         $db = $this->database->loadDatabase();
         if ($db) {
             return;
@@ -48,5 +64,34 @@ class State
         $entrypoint = '<?php ';
 
         return file_put_contents($this->config->getEntrypoint(), $entrypoint);
+    }
+
+    /**
+     * Merge new state on current.
+     *
+     * @param $state
+     */
+    public function merge($state)
+    {
+        $this->state = array_replace_recursive($this->state, $state);
+    }
+
+    /**
+     * Save current state on file.
+     *
+     * @param OutputInterface $output
+     * @return bool|int
+     */
+    public function saveState(OutputInterface $output)
+    {
+        $output->info('update state file');
+
+        return file_put_contents(
+            $this->stateFile,
+            json_encode(
+                $this->state,
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+            )
+        );
     }
 }
