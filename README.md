@@ -18,7 +18,7 @@ $ composer global require javanile/vtiger-cli
 > placing `export PATH="$HOME/.composer/vendor/bin:$PATH"` \
 > into your: `~/.bash_profile` (Mac OS users) \
 > into your: `~/.bashrc` (Linux users).
-
+---
 **`2`** Create a `vtiger.json` file into your work-station then place your existing  
 Vtiger installation path into `vtiger_dir` key as follow  
 ```json
@@ -26,7 +26,7 @@ Vtiger installation path into `vtiger_dir` key as follow
   "vtiger_dir": "/my/web/server/vtigercrm"
 }
 ```
-
+---
 **`3`** Now, type the follow command to check errors, and goog work!
 ```bash
 $ vtiger info
