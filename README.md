@@ -21,7 +21,7 @@ $ composer global require javanile/vtiger-cli
 > into your: `~/.bash_profile` (Mac OS users) \
 > into your: `~/.bashrc` (Linux users).
 
-**`2`** Create a `vtiger.json` file into your machine then place your existing `vtiger_dir` path
+**`2`** Create a `vtiger.json` file into your machine then place your existing `vtiger_dir` path inside
 ```json
 {
   "vtiger_dir": "/my/web/server/vtigercrm"
