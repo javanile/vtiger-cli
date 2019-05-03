@@ -55,4 +55,26 @@ class Database
 
         return $this->database;
     }
+
+    /**
+     * @param $sql
+     * @return mixed
+     */
+    public function fetchRow($sql)
+    {
+        $sth = $this->database->prepare($sql);
+        $sth->execute();
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+
+        return $row;
+    }
+
+    /**
+     * @param $sql
+     * @return mixed
+     */
+    public function exec($sql)
+    {
+        return $this->database->exec($sql);
+    }
 }

@@ -99,4 +99,125 @@ class App extends SillyApplication
 
         return $apply->apply($callable, $output);
     }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function setPassword($username, $password, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $utils = new Utils($this->config, $this->database, $state);
+
+        return $utils->setPassword($username, $password, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function export($callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $apply = new Apply($this->config, $state);
+
+        return $apply->apply($callable, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function exportDatabase($file, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $import = new Import($this->config, $state);
+
+        $import->importDatabase($file, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function exportStorage($callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $apply = new Apply($this->config, $state);
+
+        return $apply->apply($callable, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function import($callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $apply = new Apply($this->config, $state);
+
+        return $apply->apply($callable, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function importDatabase($callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $apply = new Apply($this->config, $state);
+
+        return $apply->apply($callable, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function importStorage($callable, OutputInterface $output)
+    {
+        $state = new State($this->config, $this->database);
+        $apply = new Apply($this->config, $state);
+
+        return $apply->apply($callable, $output);
+    }
+
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function console(OutputInterface $output)
+    {
+        $this->config->loadConfig($output);
+        $this->config->loadVtigerDir($output);
+
+        return passthru('php -f '.$this->config->getVtigerDir().'/vtlib/tools/console.php');
+    }
 }

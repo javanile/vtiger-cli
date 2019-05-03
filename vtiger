@@ -16,8 +16,20 @@ use Javanile\VtigerCli\Output;
 $app = new App(getcwd());
 
 $app->command('info', [$app, 'info']);
-$app->command('install', [$app, 'install']);
-$app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
+
 $app->command('apply [Callable]', [$app, 'apply']);
+$app->command('addEntityMethod [Module] [Callable]', [$app, 'addEntityMethod']);
+$app->command('install', [$app, 'install']);
+
+$app->command('setPassword [Username] [Password]', [$app, 'setPassword']);
+
+$app->command('export [File]', [$app, 'export']);
+$app->command('exportDatabase [File]', [$app, 'exportDatabase']);
+$app->command('exportStorage [File]', [$app, 'exportStorage']);
+$app->command('import [File]', [$app, 'import']);
+$app->command('importDatabase [File]', [$app, 'importDatabase']);
+$app->command('importStorage [File]', [$app, 'importStorage']);
+
+$app->command('console', [$app, 'console']);
 
 $app->run(null, new Output);
