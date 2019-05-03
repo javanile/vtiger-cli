@@ -12,7 +12,7 @@ The ultimate **`vtiger`** command-line tool
 
 Use `vtiger-cli` is very simple, it adds a professional touch and a lot of time saved to your work.
 
-**`1`** Install as global `vtiger-cli` on your machine with the following command
+**`①`** Install as global `vtiger-cli` on your machine with the following command
 ```bash
 $ composer global require javanile/vtiger-cli
 ```
