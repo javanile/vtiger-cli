@@ -28,7 +28,7 @@ $ composer global require javanile/vtiger-cli
 }
 ```
 > **NOTE** \
-> placing the `vtiger.json` outside your vtiger installation path to keep it secure. \
+> placing the `vtiger.json` outside your vtiger installation path to keep it secure.
 
 **`3`** Now, type the follow command to check errors, and goog work!
 ```bash
@@ -36,30 +36,6 @@ $ vtiger info
 ```
 
 ## Documentation
-
-### addEntityMethod
-
-```bash
-$ vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
-```
-
-### apply
-
-```bash
-$ vtiger apply \\MyPackage\\MyClass::myMethod
-```
-
-### install
-
-```bash
-$ vtiger install
-```
-
-### setPassword
-
-```bash
-$ vtiger setPassword admin mypass
-```
 
 ### exportDatabase
 
@@ -95,6 +71,30 @@ $ vtiger importStorage
 
 ```bash
 $ vtiger import
+```
+
+### setPassword
+
+```bash
+$ vtiger setPassword admin mypass
+```
+
+### addEntityMethod
+
+```bash
+$ vtiger addEntityMethod Contacts \\MyPackage\\MyClass::myMethod
+```
+
+### apply
+
+```bash
+$ vtiger apply \\MyPackage\\MyClass::myMethod
+```
+
+### install
+
+```bash
+$ vtiger install
 ```
 
 ### console
