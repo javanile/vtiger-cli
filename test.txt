@@ -1,6 +1,8 @@
 
 docker-compose run --rm vtiger php vtiger info
 
+docker-compose run --rm vtiger php vtiger permissions --fix
+
 docker-compose run --rm vtiger php vtiger addEntityMethod Contacts \\Javanile\\VtigerCli\\EntityMethod::logger
 
 docker-compose run --rm vtiger php vtiger apply \\Javanile\\VtigerCli\\Apply::credits

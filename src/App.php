@@ -205,6 +205,26 @@ class App extends SillyApplication
         return $apply->apply($callable, $output);
     }
 
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $callable
+     * @param OutputInterface $output
+     * @return
+     */
+    public function permissions($fix, OutputInterface $output)
+    {
+        $this->config->loadConfig($output);
+        $this->config->getVtigerDir();
+
+        $permissions = new Permissions($this->config);
+
+        if ($fix) {
+            $permissions->fix($output);
+        }
+
+        return true;
+    }
 
     /**
      * Apply code execution to vtiger.

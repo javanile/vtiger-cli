@@ -30,6 +30,7 @@ $app->command('import [File]', [$app, 'import']);
 $app->command('importDatabase [File]', [$app, 'importDatabase']);
 $app->command('importStorage [File]', [$app, 'importStorage']);
 
+$app->command('permissions [--fix]', [$app, 'permissions']);
 $app->command('console', [$app, 'console']);
 
 $app->run(null, new Output);
