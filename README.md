@@ -123,3 +123,8 @@ $ vtiger help
 $ docker-compose run --rm vtiger composer install
 $ docker-compose run --rm vtiger phpunit tests
 ```
+
+
+```bash
+docker-compose run --rm phpunit tests --filter '/::testAddEntityMethodOnRuntime/'
+```

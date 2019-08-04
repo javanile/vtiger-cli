@@ -2,7 +2,7 @@
   "name": "javanile/vtiger-cli",
   "version": "0.0.3",
   "license": "MIT",
-  "type": "project",
+  "type": "library",
   "description": "Command-line utility for Vtiger CRM.",
   "homepage": "https://bref.sh",
   "keywords": ["vtiger", "command-line", "automation", "vtiger-extension", "crm"],
@@ -23,7 +23,10 @@
   "require": {
     "ext-json": "*",
     "mnapoli/silly": "^1.5",
-    "javanile/mysql-import": "*"
+    "javanile/http-robot": "*",
+    "javanile/mysql-import": "*",
+    "javanile/vtiger-client": "*",
+    "psr/container": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5"

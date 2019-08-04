@@ -76,7 +76,7 @@ class State
     public function loadState(OutputInterface $output)
     {
         $this->state = [];
-        $output->info('loading state');
+        $output->writeln('loading state');
 
         if (!file_exists($this->stateFile)) {
             return $this->state;
@@ -85,7 +85,7 @@ class State
         $this->state = json_decode(file_get_contents($this->stateFile), true);
 
         if (!is_array($this->state)) {
-            return $output->error("State file '{$this->stateFile}' is empty or corrupted.");
+            return $output->writeln("State file '{$this->stateFile}' is empty or corrupted.");
         }
     }
 
@@ -120,7 +120,7 @@ class State
      */
     public function saveState(OutputInterface $output)
     {
-        $output->info('update state file');
+        $output->writeln('update state file');
 
         $state = json_encode(
             $this->state,
@@ -128,7 +128,7 @@ class State
         );
 
         if (!$state || $state == 'null') {
-            return $output->error("Can't save corrupted state.");
+            return $output->writeln("Can't save corrupted state.");
         }
 
         return file_put_contents($this->stateFile, $state);

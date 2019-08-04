@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Javanile\VtigerCli\VtigerCli;
 use Javanile\MysqlImport\MysqlImport;
 
-class VtigerCliTest extends TestCase
+class AppTest extends TestCase
 {
     public function testVtigerConfigInc()
     {

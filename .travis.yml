@@ -16,8 +16,8 @@ before_install:
 
 before_script:
   - docker-compose up -d
-  - sleep 10
   - docker-compose run vtiger composer install --no-interaction --prefer-source
+  - docker-compose run vtiger vendor/bin/mysql-import --do-while --no-file
 
 script:
   - docker-compose run vtiger vendor/bin/phpunit tests

@@ -56,8 +56,10 @@ class EntityMethod
 
         $this->state->loadState($output);
         if (!$this->state->checkState($state)) {
-            return $output->info("[SKIP] ");
+            return $output->writeln("[SKIP] ");
         }
+
+        $this->updateEntrypoint();
 
         $method = $callable;
 
@@ -66,7 +68,7 @@ class EntityMethod
         error_reporting(E_ALL); ini_set('display_errors', 1); // fix logging because config.inc.php apply vtiger runtime logging
         require_once 'modules/com_vtiger_workflow/VTEntityMethodManager.inc';
         $emm = new \VTEntityMethodManager($adb);
-        $emm->addEntityMethod($module, $method, 'extends/autoload.php', 'vtiger_extends_capture_action');
+        $emm->addEntityMethod($module, $method, 'include/vtgier-cli/entrypoint.php', 'vtiger_cli_entrypoint_entity_method');
         // });
 
         $this->state->merge($state);
@@ -76,6 +78,29 @@ class EntityMethod
         $this->config->saveConfig($output);
 
         return true;
+    }
+
+    /**
+     *
+     */
+    protected function updateEntrypoint()
+    {
+        $vtigerDir = $this->config->getVtigerDir();
+        $vendorDir = $this->config->getVendorDir();
+        $containerFile = $this->config->getContainerFile();
+        if (!is_dir($vtigerDir.'/include/vtiger-cli/')) {
+            mkdir($vtigerDir.'/include/vtiger-cli/', 0775, true);
+        }
+        file_put_contents(
+            $vtigerDir.'/include/vtiger-cli/entrypoint.php',
+            str_replace([
+                '__VENDOR_DIR__',
+                '__CONTAINER_FILE__',
+            ], [
+                "'{$vendorDir}'",
+                "'{$containerFile}'",
+            ], file_get_contents(__DIR__.'/../entrypoint.php'))
+        );
     }
 
     /**

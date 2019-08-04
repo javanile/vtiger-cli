@@ -19,21 +19,5 @@ class Output extends ConsoleOutput
         $this->getFormatter()->setStyle('success', new OutputFormatterStyle('green', 'default'));
     }
 
-    /**
-     * @param $msg
-     */
-    public function error($msg)
-    {
-        $this->writeln("<error>{$msg}</error>");
 
-        return false;
-    }
-
-    /**
-     * @param $msg
-     */
-    public function info($msg)
-    {
-        $this->writeln("<info>{$msg}</info>");
-    }
 }

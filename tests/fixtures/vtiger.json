@@ -1,0 +1,10 @@
+{
+    "vtiger_dir": "/var/www/html",
+    "vendor_dir": "/app/vendor",
+    "container_file": "container.php",
+    "entity_method": {
+        "Contacts": {
+            "Javanile\\VtigerCli\\Tests\\Fixtures\\MyClass::myMethod": "once"
+        }
+    }
+}

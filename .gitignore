@@ -1,4 +1,5 @@
 .idea/
 vendor/
+vtiger-cli/
 composer.lock
 vtiger.lock
