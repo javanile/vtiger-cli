@@ -96,4 +96,65 @@ class Functions
             ]),
         ], '@text');
     }
+
+    public static function createContact($lastname)
+    {
+        $robot = static::createRobot();
+        $vtrftk = $robot->get('index.php?module=Contacts&view=Edit', '__vtrftk');
+
+        $text = $robot->post('index.php', [
+            '__vtrftk' => $vtrftk,
+            'module'=> 'Contacts',
+            'action'=> 'Save',
+            'record'=> '',
+            'defaultCallDuration'=> '5',
+            'defaultOtherEventDuration'=> '5',
+            'appName'=> '&app=SUPPORT',
+            'picklistDependency'=> '[]',
+            'salutationtype'=> '',
+            'firstname'=> '',
+            'lastname'=> $lastname,
+            'phone'=> '',
+            'popupReferenceModule'=> 'Accounts',
+            'account_id'=> '',
+            'account_id_display'=> '',
+            'mobile'=> '',
+            'leadsource'=> '',
+            'homephone'=> '',
+            'title'=> '',
+            'otherphone'=> '',
+            'department'=> '',
+            'fax'=> '',
+            'email'=> '',
+            'birthday'=> '',
+            'assistant'=> '',
+            'popupReferenceModule'=> 'Contacts',
+            'contact_id'=> '',
+            'contact_id_display'=> '',
+            'assistantphone'=> '',
+            'secondaryemail'=> '',
+            'emailoptout'=> '0',
+            'donotcall'=> '0',
+            'reference'=> '0',
+            'assigned_user_id'=> '1',
+            'notify_owner'=> '0',
+            'portal'=> '0',
+            'support_start_date'=> '04-08-2019',
+            'support_end_date'=> '04-08-2020',
+            'mailingstreet'=> '',
+            'otherstreet'=> '',
+            'mailingpobox'=> '',
+            'otherpobox'=> '',
+            'mailingcity'=> '',
+            'othercity'=> '',
+            'mailingstate'=> '',
+            'otherstate'=> '',
+            'mailingzip'=> '',
+            'otherzip'=> '',
+            'mailingcountry'=> '',
+            'othercountry'=> '',
+            'description'=> '',
+            'imagename[]'=> '',
+        ], '@text');
+    }
 }

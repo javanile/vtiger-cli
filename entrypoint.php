@@ -33,8 +33,6 @@ function vtiger_cli_entrypoint_entity_method()
     $module = $backtrace[1]['args'][0]->moduleName;
     $method = $backtrace[1]['args'][1];
 
-    var_dump($backtrace[1]['args']);
-
     $class = explode('::', $method);
     $container = vtiger_cli_container();
 
@@ -42,8 +40,4 @@ function vtiger_cli_entrypoint_entity_method()
         $instance = $container->get($class[0]);
         call_user_func_array([$instance, $class[1]], func_get_args());
     }
-
-    #var_dump(func_get_args());
-
-    die();
 }

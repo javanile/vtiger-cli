@@ -1,5 +1,8 @@
 .idea/
 vendor/
 vtiger-cli/
+tests/fixtures/tmp
+!tests/fixtures/tmp/.gitkeep
 composer.lock
+coverage.xml
 vtiger.lock

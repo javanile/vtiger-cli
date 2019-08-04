@@ -29,10 +29,7 @@ class EntityMethodTest extends TestCase
         $method = MyClass::class.'::myMethod';
         $this->app->addEntityMethod('Contacts', $method);
 
-        $sql = "SELECT * FROM com_vtiger_workflowtasks_entitymethod";
-        //var_Dump($this->pdo->query($sql)->fetchAll());
-
-        $sql = "SELECT * FROM com_vtiger_workflowtasks_entitymethod WHERE function_path='extends/autoload.php'";
+        $sql = "SELECT * FROM com_vtiger_workflowtasks_entitymethod WHERE function_path='include/vtiger-cli/entrypoint.php'";
         $row = $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
         $this->assertEquals($method, $row['method_name']);
@@ -42,8 +39,11 @@ class EntityMethodTest extends TestCase
     {
         $method = MyClass::class.'::myMethod';
         $this->app->addEntityMethod('Contacts', $method);
+        $lastname = md5(time().rand(0, 10000));
 
-        var_dump("Ciao");
         Functions::createWorkflow();
+        Functions::createContact($lastname);
+
+        $this->assertFileExists(__DIR__.'/fixtures/tmp/'.$lastname);
     }
 }
