@@ -4,6 +4,7 @@ namespace Javanile\VtigerCli;
 
 use Silly\Application as SillyApplication;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Output\NullOutput;
 
 class App extends SillyApplication
 {
@@ -77,10 +78,16 @@ class App extends SillyApplication
      * @param $callable
      * @param OutputInterface $output
      */
-    public function addEntityMethod($module, $callable, OutputInterface $output)
+    public function addEntityMethod($module, $callable, OutputInterface $output = null)
     {
+        if ($output === null) {
+            $output = new NullOutput();
+        }
+
         $state = new State($this->config, $this->database);
         $entityMethod = new EntityMethod($this->config, $state);
+
+        var_dump("call");
 
         return $entityMethod->add($module, $callable, $output);
     }

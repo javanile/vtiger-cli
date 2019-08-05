@@ -72,19 +72,37 @@ class Config
     }
 
     /**
+     * @return string
+     */
+    public function getVendorDir()
+    {
+        return isset($this->config['vendor_dir'])
+            ? $this->config['vendor_dir'] : $this->workingDir.'/vendor';
+    }
+
+    /**
+     * @return string
+     */
+    public function getContainerFile()
+    {
+        return $this->workingDir . '/' . (isset($this->config['container_file'])
+            ? $this->config['container_file'] : 'container.php');
+    }
+
+    /**
      * @param $output
      * @return array|mixed
      */
     public function loadConfig(OutputInterface $output)
     {
         if (!file_exists($this->configFile)) {
-            return $output->error("Config file '{$this->configFile}' not found.");
+            return $output->writeln("Config file '{$this->configFile}' not found.");
         }
 
         $this->config = json_decode(file_get_contents($this->configFile), true);
 
         if (!is_array($this->config)) {
-            return $output->error("Config file '{$this->configFile}' is empty or corrupted.");
+            return $output->writeln("Config file '{$this->configFile}' is empty or corrupted.");
         }
 
         return $this->config;
@@ -133,7 +151,7 @@ class Config
 
         $this->vtigerDir = $this->config['vtiger_dir'];
 
-        $output->info("load vtiger directory: $this->vtigerDir");
+        $output->writeln("load vtiger directory: $this->vtigerDir");
 
         set_include_path($this->vtigerDir);
 
@@ -174,7 +192,7 @@ class Config
      */
     public function saveConfig(OutputInterface $output)
     {
-        $output->info('update config file');
+        $output->writeln('update config file');
 
         $config = json_encode(
             $this->config,
@@ -182,7 +200,7 @@ class Config
         );
 
         if (!$config || $config == 'null') {
-            return $output->error("Can't save corrupted config.");
+            return $output->writeln("Can't save corrupted config.");
         }
 
         return file_put_contents($this->configFile, $config);

@@ -5,18 +5,21 @@ services:
   vtiger: &vtiger
     build: ./
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - VT_DEBUG=true
+      - MYSQL_ROOT_PASSWORD=secret
     ports:
       - "40080:80"
     volumes:
       - ./:/app
+      - ./vtiger-cli:/var/www/html/include/vtiger-cli
     links:
       - mysql
+      - adminer
 
   adminer:
     image: javanile/adminer
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=secret
     ports:
       - "40081:8080"
     links:
@@ -26,7 +29,7 @@ services:
     image: mysql:5.5
     environment:
       - MYSQL_DATABASE=vtiger
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=secret
     volumes:
       - mysql:/var/lib/mysql:rw
       - ./:/vtiger:rw
@@ -38,6 +41,10 @@ services:
   phpunit:
     <<: *vtiger
     entrypoint: ['./vendor/bin/phpunit']
+
+  box:
+    <<: *vtiger
+    entrypoint: ['php', '-d', 'phar.readonly=off', './vendor/bin/box']
 
 volumes:
   mysql:
