@@ -12,7 +12,11 @@ The ultimate **`vtiger`** command-line tool
 
 ## Get Started
 
-Use `vtiger-cli` is very simple, it adds a professional touch and a lot of time saved to your work.
+Use vtiger-cli is very simple, it adds a professional touch and a lot of time saved to your work.
+
+```bash
+$ curl -s https://javanile.github.io/vtiger-cli/installer | sudo bash -
+```
 
 **`①`** Install as global `vtiger-cli` on your machine with the following command
 ```bash

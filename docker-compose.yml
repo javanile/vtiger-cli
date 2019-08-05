@@ -42,5 +42,9 @@ services:
     <<: *vtiger
     entrypoint: ['./vendor/bin/phpunit']
 
+  box:
+    <<: *vtiger
+    entrypoint: ['php', '-d', 'phar.readonly=off', './vendor/bin/box']
+
 volumes:
   mysql:
