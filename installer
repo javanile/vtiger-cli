@@ -4,4 +4,4 @@ set -e
 bin=/usr/local/bin/vtiger-cli
 url=https://javanile.github.io/vtiger-cli/dist/vtiger-cli.phar
 
-curl -s -o ${bin} ${url} && chmod +x ${bin} && vtiger-cli --version
+curl -# -o ${bin} ${url} && chmod +x ${bin} && vtiger-cli --version
