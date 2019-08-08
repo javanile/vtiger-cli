@@ -42,9 +42,9 @@ services:
     <<: *vtiger
     entrypoint: ['./vendor/bin/phpunit']
 
-  box:
+  build:
     <<: *vtiger
-    entrypoint: ['php', '-d', 'phar.readonly=off', './vendor/bin/box']
+    entrypoint: ['./build.sh']
 
 volumes:
   mysql:
