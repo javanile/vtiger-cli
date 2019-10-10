@@ -42,6 +42,7 @@ class Permissions
             "Fix non writable directories" => "cd {$vtigerDir}; find -type d -exec chmod 755 {} \;",
             "Fix non recursive writable files and directories" => "cd {$vtigerDir}; chmod 777 tabdata.php config.inc.php parent_tabdata.php modules",
             "Fix recursive writable files and directories" => "cd {$vtigerDir}; chmod 777 -R modules/Settings layouts/vlayout/modules storage user_privileges cron/modules test logs languages cache",
+            "Fix executable files" => "cd {$vtigerDir}; chmod +x cron/vtigercron.sh && true",
             "Fix vtiger 7 writable items" => "cd {$vtigerDir}; chmod 777 -R layouts/v7/modules && true",
         ];
 
