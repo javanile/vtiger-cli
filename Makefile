@@ -1,9 +1,9 @@
 
 up:
-	docker-compose up -d vtiger
+	@docker-compose up -d vtiger
 
 permissions:
-	chmod +x bin/vtiger
+	@chmod +x bin/vtiger
 
 install:
 	docker-compose run --rm composer install
@@ -21,4 +21,4 @@ test-help: permissions
 	docker-compose run --rm vtiger /app/bin/vtiger list
 
 test-client: permissions up
-	docker-compose exec -T vtiger /app/bin/vtiger client describe Accounts
+	@docker-compose exec -T vtiger /app/bin/vtiger client describe Accounts

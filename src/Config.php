@@ -151,7 +151,7 @@ class Config
         $this->config = json_decode(file_get_contents($this->configFile), true);
 
         if (!is_array($this->config)) {
-            return $output->writeln("Config file '{$this->configFile}' is empty or corrupted.");
+            return $output->error("Config file '{$this->configFile}' is empty or corrupted.");
         }
 
         return $this->config;
@@ -204,7 +204,7 @@ class Config
 
         $this->vtigerDir = $this->config['vtiger_dir'];
 
-        $output->writeln("load vtiger directory: $this->vtigerDir");
+        $output->info("load vtiger directory: {$this->vtigerDir}");
 
         set_include_path($this->vtigerDir);
 

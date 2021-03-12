@@ -22,8 +22,16 @@ class Output extends ConsoleOutput
     /**
      *
      */
+    public function info($message)
+    {
+        $this->getErrorOutput()->writeln($message);
+    }
+
+    /**
+     *
+     */
     public function error($message)
     {
-        $this->writeln($message);
+        return $this->getErrorOutput()->writeln("<error>{$message}</error>");
     }
 }
