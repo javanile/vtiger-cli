@@ -28,30 +28,40 @@ class Client
      * @param $config
      * @param $state
      */
-    public function __construct($config, $state)
+    public function __construct($config)
     {
         $this->config = $config;
-        $this->state = $state;
     }
 
     /**
      *
      */
-    public function call($operation, $args, $output)
+    public function call($operation, $args, $input, $output)
     {
-        $client = new VtigerClient();
-
-        if (method_exists($client, $operation)) {
-
-        } else {
-
+        $siteUrl = $this->config->getSiteUrl($input, $output);
+        if (empty($siteUrl)) {
+            return $output->error("Missing site url");
         }
 
-        $response = call_user_func_array([$client, $operation], []);
+        $client = new VtigerClient($siteUrl);
 
-        json_encode(, JSON_UNESCAPED_SLASHES);
-        $output->write();
+        foreach ($args as &$arg) {
+            if ($arg[0] == '{') {
+                $arg = json_decode($arg, true);
+            }
+        }
 
-        return
+        if (!method_exists($client, $operation)) {
+            $output->error("Invalid operation: $operation");
+            return 1;
+        }
+
+        $response = call_user_func_array([$client, $operation], $args);
+
+        $payload = json_encode($response, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+
+        $output->write($payload);
+
+        return empty($response['success']) ? 1 : 0;
     }
 }

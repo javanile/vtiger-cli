@@ -1,4 +1,9 @@
 
+up:
+	docker-compose up -d vtiger
+
+permissions:
+	chmod +x bin/vtiger
 
 install:
 	docker-compose run --rm composer install
@@ -6,6 +11,14 @@ install:
 ## =====
 ## Tests
 ## =====
+test:
+	docker-compose run --rm phpunit tests
 
-test-client:
-	docker-compose run --rm vtiger php -f /app/bin/vtiger client a b c
+test-info: permissions
+	docker-compose run --rm vtiger /app/bin/vtiger info
+
+test-help: permissions
+	docker-compose run --rm vtiger /app/bin/vtiger list
+
+test-client: permissions up
+	docker-compose exec -T vtiger /app/bin/vtiger client describe Accounts

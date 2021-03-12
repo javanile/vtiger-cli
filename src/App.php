@@ -4,8 +4,11 @@ namespace Javanile\VtigerCli;
 
 use Javanile\VtigerClient\VtigerClient;
 use Silly\Application as SillyApplication;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Input\InputArgument;
 
 class App extends SillyApplication
 {
@@ -33,15 +36,32 @@ class App extends SillyApplication
     }
 
     /**
+     * @return \Symfony\Component\Console\Input\InputDefinition
+     */
+    protected function getDefaultInputDefinition()
+    {
+        $definition = parent::getDefaultInputDefinition();
+
+        $definition->addOption(new InputOption('site-url', 's', InputOption::VALUE_OPTIONAL, 'Set current site url'));
+        $definition->addOption(new InputOption('username', 'u', InputOption::VALUE_OPTIONAL, 'Set current username'));
+        $definition->addOption(new InputOption('password', 'p', InputOption::VALUE_OPTIONAL, 'Set current password'));
+        $definition->addOption(new InputOption('access-key', 'a', InputOption::VALUE_OPTIONAL, 'Set current access key'));
+
+        return $definition;
+    }
+
+    /**
      * @param OutputInterface $output
      */
-    public function info(OutputInterface $output)
+    public function info(InputInterface $input, OutputInterface $output)
     {
         $this->config->loadConfig($output);
-        $output->writeln($this->getName().' ('.$this->getVersion().')');
-        $output->writeln('  config file: '.$this->config->getConfigFile());
-        $output->writeln('  vtiger directory: '.$this->config->getVtigerDir());
-        $output->writeln('  working directory: '.$this->config->getWorkingDir());
+
+        $output->writeln('==[ '.$this->getName().' '.$this->getVersion().' ]==');
+        $output->writeln('Config file: '.$this->config->getConfigFile());
+        $output->writeln('Vtiger directory: '.$this->config->getVtigerDir());
+        $output->writeln('Working directory: '.$this->config->getWorkingDir());
+        $output->writeln('Site URL: '.$this->config->getSiteUrl($input));
     }
 
     /**
@@ -56,7 +76,7 @@ class App extends SillyApplication
         $state = new State($this->config, $this->database);
 
         if (!$state->init($output)) {
-            $output->writeln('<fail>Installaion fail</fail>');
+            $output->writeln('<fail>Installation fail</fail>');
         }
 
         $apply = new Apply($this->config, $state);
@@ -258,13 +278,13 @@ class App extends SillyApplication
      *
      * @return void
      */
-    public function client($operation, $args, OutputInterface $output)
+    public function client($operation, $args, InputInterface $input, OutputInterface $output)
     {
         $this->config->loadConfig($output);
         $this->config->loadVtigerDir($output);
 
         $client = new Client($this->config);
 
-        return $client->call($operation, $args, $output);
+        return $client->call($operation, $args, $input, $output);
     }
 }

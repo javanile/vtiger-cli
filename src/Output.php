@@ -19,5 +19,11 @@ class Output extends ConsoleOutput
         $this->getFormatter()->setStyle('success', new OutputFormatterStyle('green', 'default'));
     }
 
-
+    /**
+     *
+     */
+    public function error($message)
+    {
+        $this->writeln($message);
+    }
 }

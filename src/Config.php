@@ -2,6 +2,7 @@
 
 namespace Javanile\VtigerCli;
 
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Config
@@ -83,6 +84,22 @@ class Config
     /**
      * @return string
      */
+    public function getSiteUrl(InputInterface $input, OutputInterface $output)
+    {
+        if ($siteUrl = $input->getOption('site-url')) {
+            return $siteUrl;
+        }
+
+        if (isset($this->config['site_url'])) {
+            return $this->config['site_url'];
+        }
+
+        return $this->getVtigerConfigIncSiteUrl($output);
+    }
+
+    /**
+     * @return string
+     */
     public function getContainerFile()
     {
         return $this->workingDir . '/' . (isset($this->config['container_file'])
@@ -122,14 +139,18 @@ class Config
 
         $this->vtigerConfigIncFile = $this->vtigerDir . '/config.inc.php';
 
-        include $this->vtigerConfigIncFile;
+        if (empty($_SERVER['HTTP_HOST'])) {
+            $_SERVER['HTTP_HOST'] = 'localhost';
+        }
 
+        include $this->vtigerConfigIncFile;
         // fix logging because config.inc.php apply vtiger runtime logging
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
         $this->vtigerConfigInc = [
             'dbconfig' => $dbconfig,
+            'site_url' => $site_URL,
         ];
 
         return $this->vtigerConfigInc;
@@ -156,6 +177,16 @@ class Config
         set_include_path($this->vtigerDir);
 
         return $this->vtigerDir;
+    }
+
+    /**
+     * @param $output
+     */
+    public function getVtigerConfigIncSiteUrl($output)
+    {
+        $this->loadVtigerConfigInc($output);
+
+        return $this->vtigerConfigInc['site_url'];
     }
 
     /**
