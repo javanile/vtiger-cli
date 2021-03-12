@@ -283,7 +283,8 @@ class App extends SillyApplication
         $this->config->loadConfig($output);
         $this->config->loadVtigerDir($output);
 
-        $client = new Client($this->config);
+        $utils = new Utils($this->config, $this->database);
+        $client = new Client($this->config, $utils);
 
         return $client->call($operation, $args, $input, $output);
     }

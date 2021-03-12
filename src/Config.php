@@ -49,6 +49,22 @@ class Config
     }
 
     /**
+     *
+     */
+    public function has($key)
+    {
+        return isset($this->config[$key]);
+    }
+
+    /**
+     *
+     */
+    public function get($key)
+    {
+        return $this->config[$key];
+    }
+
+    /**
      * @return string
      */
     public function getConfigFile()
@@ -95,6 +111,22 @@ class Config
         }
 
         return $this->getVtigerConfigIncSiteUrl($output);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(InputInterface $input, OutputInterface $output)
+    {
+        if ($username = $input->getOption('username')) {
+            return $username;
+        }
+
+        if (isset($this->config['username'])) {
+            return $this->config['username'];
+        }
+
+        return 'admin';
     }
 
     /**

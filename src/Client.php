@@ -3,6 +3,7 @@
 namespace Javanile\VtigerCli;
 
 use Javanile\VtigerClient\VtigerClient;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Client
@@ -20,7 +21,7 @@ class Client
     /**
      * State handler.
      */
-    protected $state;
+    protected $utils;
 
     /**
      * Apply constructor.
@@ -28,9 +29,10 @@ class Client
      * @param $config
      * @param $state
      */
-    public function __construct($config)
+    public function __construct($config, $utils)
     {
         $this->config = $config;
+        $this->utils = $utils;
     }
 
     /**
@@ -56,12 +58,35 @@ class Client
             return 1;
         }
 
+        $username = $this->config->getUsername($input, $output);
+        $accessKey = $this->getAccessKey($username, $input, $output);
+
+        if ($accessKey) {
+            $client->login($username, $accessKey);
+        }
+
         $response = call_user_func_array([$client, $operation], $args);
 
         $payload = json_encode($response, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
-        $output->write($payload);
+        $output->writeln($payload);
 
         return empty($response['success']) ? 1 : 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessKey($username, InputInterface $input, OutputInterface $output)
+    {
+        if ($accessKey = $input->getOption('access-key')) {
+            return $accessKey;
+        }
+
+        if ($this->config->has('access_key')) {
+            return $this->config->get('access_key');
+        }
+
+        return $this->utils->getAccessKey($username, $output);
     }
 }

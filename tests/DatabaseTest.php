@@ -18,7 +18,7 @@ class DatabaseTest extends TestCase
         var_dump($fake->getOutput());
 
         $this->assertEquals(
-            "vtiger-cli (0.0.1)\n".
+            "vtiger-cli 0.0.1\n".
             "  config file: /app/tests/fixtures/vtiger.json\n".
             "  vtiger directory: /var/www/html\n".
             "  working directory: /app/tests/fixtures\n",

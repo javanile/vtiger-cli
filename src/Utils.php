@@ -28,11 +28,11 @@ class Utils
      * @param $config
      * @param $state
      */
-    public function __construct($config, $database, $state)
+    public function __construct($config, $database)
     {
         $this->config = $config;
         $this->database = $database;
-        $this->state = $state;
+        //$this->state = $state;
     }
 
     /**
@@ -60,6 +60,26 @@ class Utils
         $sql = "UPDATE vtiger_users SET user_password = '{$userPassword}', confirm_password = '{$userPassword}' WHERE id = '{$userId}'";
 
         $this->database->exec($sql);
+    }
+
+    /**
+     * Add EntityMethod on vtiger database.
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     * @return bool
+     */
+    public function getAccessKey($username, OutputInterface $output)
+    {
+        if (!$this->database->loadDatabase($output)) {
+            return;
+        }
+
+        $sql = "SELECT accesskey FROM vtiger_users WHERE status = 'Active' AND user_name = '{$username}' LIMIT 1";
+        $row = $this->database->fetchRow($sql);
+
+        return $row['accesskey'];
     }
 
     /**
