@@ -2,6 +2,7 @@
 
 namespace Javanile\VtigerCli;
 
+use Javanile\VtigerClient\VtigerClient;
 use Silly\Application as SillyApplication;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
@@ -246,5 +247,24 @@ class App extends SillyApplication
         $this->config->loadVtigerDir($output);
 
         return passthru('php -f '.$this->config->getVtigerDir().'/vtlib/tools/console.php');
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @param $operation
+     * @param $args
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
+    public function client($operation, $args, OutputInterface $output)
+    {
+        $this->config->loadConfig($output);
+        $this->config->loadVtigerDir($output);
+
+        $client = new Client($this->config);
+
+        return $client->call($operation, $args, $output);
     }
 }

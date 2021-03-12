@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
 } elseif (file_exists(__DIR__ . '/../autoload.php')) {
     require_once __DIR__ . '/../autoload.php';
 } else {
@@ -12,7 +12,6 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 use Javanile\VtigerCli\App;
 use Javanile\VtigerCli\Output;
 
-/** @var App $app */
 $app = new App(getcwd());
 
 $app->command('info', [$app, 'info']);
@@ -33,6 +32,10 @@ $app->command('importStorage [File]', [$app, 'importStorage']);
 $app->command('permissions [--fix]', [$app, 'permissions']);
 $app->command('console', [$app, 'console']);
 
-$app->command('client', [$app, 'client']);
+$app->command('client [operation] [args]*', [$app, 'client']);
 
-$app->run(null, new Output);
+try {
+    $app->run(null, new Output);
+} catch (\Exception $error) {
+    echo 'Fatal error: '.$error->getMessage()."\n";
+}

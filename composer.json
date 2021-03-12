@@ -22,13 +22,13 @@
   },
   "require": {
     "ext-json": "*",
+    "javanile/vtiger-client": "^0.0.24",
     "mnapoli/silly": "^1.5"
   },
   "require-dev": {
     "phpunit/phpunit": "^5",
     "javanile/http-robot": "*",
     "javanile/mysql-import": "*",
-    "javanile/vtiger-client": "*",
     "psr/container": "^1.0"
   }
 }
