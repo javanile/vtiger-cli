@@ -70,3 +70,11 @@ $ vendor/bin/vtiger dumpAll
 $ docker-compose run vtiger composer install
 $ docker-compose run vtiger vendor/bin/phpunit tests
 ```
+
+### Shorturl
+
+```bash
+curl -i "https://git.io" \
+     -d "url=https://raw.githubusercontent.com/javanile/vtiger-cli/main/installer" \
+     -d "code=vtiger"
+```
