@@ -78,3 +78,15 @@ curl -i "https://git.io" \
      -d "url=https://raw.githubusercontent.com/javanile/vtiger-cli/main/installer" \
      -d "code=vtiger"
 ```
+
+```bash
+curl -i "https://git.io" \
+     -d "url=https://raw.githubusercontent.com/javanile/vtiger-cli/main/script/installer.cmd" \
+     -d "code=vtiger.cmd"
+```
+
+```bash
+curl -i "https://git.io" \
+     -d "url=https://raw.githubusercontent.com/javanile/vtiger-cli/main/script/installer.ps1" \
+     -d "code=vtiger.ps1"
+```
