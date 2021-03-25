@@ -38,6 +38,7 @@ If (Test-CommandNotExists composer) {
 If (Test-CommandNotExists vtiger) {
 	Write-Host "Install vtiger tool..."
 	scoop bucket add javanile https://github.com/javanile/scoop-bucket.git
+	scoop update
 	scoop install javanile/vtiger
 }
 
