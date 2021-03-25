@@ -20,5 +20,8 @@ test-info: permissions
 test-help: permissions
 	docker-compose run --rm vtiger /app/bin/vtiger list
 
+test-info: permissions
+	docker-compose run --rm vtiger /app/bin/vtiger info
+
 test-client: permissions up
 	@docker-compose exec -T vtiger /app/bin/vtiger client describe Accounts
