@@ -1,10 +1,10 @@
 {
   "name": "javanile/vtiger-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "type": "library",
   "description": "Command-line utility for Vtiger CRM.",
-  "homepage": "https://bref.sh",
+  "homepage": "https://github.com/javanile/vtiger-cli",
   "keywords": ["vtiger", "command-line", "automation", "vtiger-extension", "crm"],
   "bin": [
     "vtiger"
