@@ -1,4 +1,4 @@
-## vtiger
+# vtiger
 
 [![StyleCI](https://github.styleci.io/repos/137904364/shield?branch=master)](https://github.styleci.io/repos/137904364)
 [![Build Status](https://travis-ci.org/javanile/vtiger-cli.svg?branch=master)](https://travis-ci.org/javanile/vtiger-cli)
@@ -10,7 +10,7 @@ Use vtiger-cli is very simple, it adds a professional touch and a lot of time sa
 
 ### Get Started
 
-#### Install
+#### Installation
 
 PowerShell (Windows) 
 
