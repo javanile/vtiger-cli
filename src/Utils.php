@@ -41,6 +41,7 @@ class Utils
      * @param $module
      * @param $callable
      * @param OutputInterface $output
+     *
      * @return bool
      */
     public function setPassword($username, $password, OutputInterface $output)

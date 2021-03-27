@@ -10,6 +10,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Input\InputArgument;
 
+/**
+ * Class App
+ *
+ * @package Javanile\VtigerCli
+ */
 class App extends SillyApplication
 {
     /**
@@ -51,6 +56,9 @@ class App extends SillyApplication
     }
 
     /**
+     *
+     * @usage
+     *
      * @param OutputInterface $output
      */
     public function info(InputInterface $input, OutputInterface $output)
@@ -65,6 +73,7 @@ class App extends SillyApplication
     }
 
     /**
+     * @usage
      * @param OutputInterface $output
      */
     public function install(OutputInterface $output)
@@ -94,6 +103,7 @@ class App extends SillyApplication
 
     /**
      * Add EntityMethod on vtiger database for triggering into workflow.
+     * @usage
      *
      * @param $module
      * @param $callable
@@ -115,10 +125,11 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function apply($callable, OutputInterface $output)
     {
@@ -130,10 +141,11 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function setPassword($username, $password, OutputInterface $output)
     {
@@ -145,10 +157,11 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function export($callable, OutputInterface $output)
     {
@@ -160,25 +173,28 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function exportDatabase($file, OutputInterface $output)
     {
         $state = new State($this->config, $this->database);
         $import = new Import($this->config, $state);
 
-        $import->importDatabase($file, $output);
+        return $import->importDatabase($file, $output);
     }
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     *
+     * @return integer
      */
     public function exportStorage($callable, OutputInterface $output)
     {
@@ -190,10 +206,11 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @usage
      *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function import($callable, OutputInterface $output)
     {
@@ -206,9 +223,12 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @usage
+     *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     *
+     * @return integer
      */
     public function importDatabase($callable, OutputInterface $output)
     {
@@ -221,9 +241,11 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @usage
+     *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     * @return integer
      */
     public function importStorage($callable, OutputInterface $output)
     {
@@ -236,9 +258,12 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @usage
+     *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     *
+     * @return integer
      */
     public function permissions($fix, OutputInterface $output)
     {
@@ -257,28 +282,79 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @usage
+     *
      * @param $callable
      * @param OutputInterface $output
-     * @return
+     *
+     * @return integer
      */
     public function console(OutputInterface $output)
     {
         $this->config->loadConfig($output);
         $this->config->loadVtigerDir($output);
 
-        return passthru('php -f '.$this->config->getVtigerDir().'/vtlib/tools/console.php');
+        $console = new Console($this->config);
+
+        return $console->exec();
     }
 
     /**
      * Apply code execution to vtiger.
      *
+     * @usage
+     *
      * @param $operation
      * @param $args
      * @param OutputInterface $output
      *
-     * @return void
+     * @return integer
      */
     public function client($operation, $args, InputInterface $input, OutputInterface $output)
+    {
+        $this->config->loadConfig($output);
+        $this->config->loadVtigerDir($output);
+
+        $utils = new Utils($this->config, $this->database);
+        $client = new Client($this->config, $utils);
+
+        return $client->call($operation, $args, $input, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @usage
+     *
+     * @param $operation
+     * @param $args
+     * @param OutputInterface $output
+     *
+     * @return integer
+     */
+    public function init($operation, $args, InputInterface $input, OutputInterface $output)
+    {
+        $this->config->loadConfig($output);
+        $this->config->loadVtigerDir($output);
+
+        $utils = new Utils($this->config, $this->database);
+        $client = new Client($this->config, $utils);
+
+        return $client->call($operation, $args, $input, $output);
+    }
+
+    /**
+     * Apply code execution to vtiger.
+     *
+     * @usage
+     *
+     * @param $operation
+     * @param $args
+     * @param OutputInterface $output
+     *
+     * @return integer
+     */
+    public function ping($operation, $args, InputInterface $input, OutputInterface $output)
     {
         $this->config->loadConfig($output);
         $this->config->loadVtigerDir($output);
