@@ -14,7 +14,7 @@ build-docs:
 release: build-docs
 	@git add .
 	@git commit -am "Release "
-	echo $$((1 + 1))
+	@echo $$(($$(date +%s) - 1609455600))
 
 ## =====
 ## Tests
