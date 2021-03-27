@@ -6,15 +6,34 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9bf441fc44d94bafbbe5f509251acb68)](https://www.codacy.com/app/francescobianco/vtiger-cli?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=javanile/vtiger-cli&amp;utm_campaign=Badge_Grade)
 ![vtiger](https://github.com/javanile/vtiger-cli/raw/main/vtiger.png)
 
-### Get Started
-
 Use vtiger-cli is very simple, it adds a professional touch and a lot of time saved to your work.
 
-```bash
-$ curl -s https://javanile.github.io/vtiger-cli/installer | sudo bash -
+### Get Started
+
+#### Install
+
+PowerShell (Windows) 
+
+```PowerSchell
+PS C:\Users\SamSempiol> curl git.io/vtiger.ps1 -o setup; .\setup
 ```
 
+CMD.EXE (Windows) 
+
+```cmd
+C:\Users\SamSempiol> curl git.io/vtiger.cmd -o setup.cmd & setup
+```
+
+Linux / macOS
+
+```bash
+$ curl -fsSL git.io/vtiger | sudo bash -
+```
+
+### Examples
+
 ### Official Documentation
+
 Documentation for installing Laravel can be found on the Laravel website.
 
 **`②`** Create a `vtiger.json` file into your machine then place your existing `vtiger_dir` path inside
@@ -37,7 +56,7 @@ $ vtiger info
 
 ## Official Documentation
 
-
+### Requirements
 
 ### Testing
 
@@ -46,7 +65,7 @@ $ docker-compose run vtiger composer install
 $ docker-compose run vtiger vendor/bin/phpunit tests
 ```
 
-### Shorturl
+### Shorten URLs
 
 ```bash
 curl -i "https://git.io" \
@@ -69,3 +88,19 @@ curl -i "https://git.io" \
 ### Demo
 
 > **LOOKING FOR FAST DEMO! Visit --> [https://github.com/javanile/vtiger-demo]() <--**
+
+## Contributing
+
+Thank you for considering contributing to the Installer! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+Please review [our security policy](https://github.com/laravel/installer/security/policy) on how to report security vulnerabilities.
+
+## License
+
+Laravel Installer is open-sourced software licensed under the [MIT license](LICENSE.md).
