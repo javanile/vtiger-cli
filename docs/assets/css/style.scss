@@ -4,6 +4,7 @@
 @import "{{ site.theme }}";
 
 body {
+  margin: 0 5px !important;
   background: transparent url("../images/background.png") top center !important;
 }
 
