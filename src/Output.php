@@ -20,7 +20,9 @@ class Output extends ConsoleOutput
     }
 
     /**
+     * Report info message to output.
      *
+     * @param $message
      */
     public function info($message)
     {

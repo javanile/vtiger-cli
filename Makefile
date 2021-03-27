@@ -6,7 +6,7 @@ permissions:
 	@chmod +x bin/vtiger
 
 install:
-	docker-compose run --rm composer install
+	@docker-compose run --rm composer install
 
 build-docs:
 	@php -f script/build-docs.php
