@@ -18,7 +18,7 @@ body {
 .markdown-body::after {
   display: block;
   content: "";
-  background: url("../images/logo.png") no-repeat;
+  background: url("../images/logo.png") no-repeat 100% -40%;
   opacity: 0.2;
   top: 0;
   left: 0;
