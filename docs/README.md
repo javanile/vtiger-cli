@@ -6,22 +6,22 @@
 
 | Command | Description |
 | --- | --- |
-| [info](#info) |  |
-| [install](#install) |  |
-| [addEntityMethod](#addEntityMethod) | Add EntityMethod on vtiger database for triggering into workflow |
-| [apply](#apply) | Apply code execution to vtiger |
-| [setPassword](#setPassword) | Apply code execution to vtiger |
-| [export](#export) | Apply code execution to vtiger |
-| [exportDatabase](#exportDatabase) | Apply code execution to vtiger |
-| [exportStorage](#exportStorage) | Apply code execution to vtiger |
-| [import](#import) | Apply code execution to vtiger |
-| [importDatabase](#importDatabase) | Apply code execution to vtiger |
-| [importStorage](#importStorage) | Apply code execution to vtiger |
-| [permissions](#permissions) | Apply code execution to vtiger |
-| [console](#console) | Apply code execution to vtiger |
-| [client](#client) | Apply code execution to vtiger |
-| [init](#init) | Apply code execution to vtiger |
-| [ping](#ping) | Apply code execution to vtiger |
+| [vtiger info](#info) |  |
+| [vtiger install](#install) |  |
+| [vtiger addEntityMethod](#addEntityMethod) | Add EntityMethod on vtiger database for triggering into workflow |
+| [vtiger apply](#apply) | Apply code execution to vtiger |
+| [vtiger setPassword](#setPassword) | Apply code execution to vtiger |
+| [vtiger export](#export) | Apply code execution to vtiger |
+| [vtiger exportDatabase](#exportDatabase) | Apply code execution to vtiger |
+| [vtiger exportStorage](#exportStorage) | Apply code execution to vtiger |
+| [vtiger import](#import) | Apply code execution to vtiger |
+| [vtiger importDatabase](#importDatabase) | Apply code execution to vtiger |
+| [vtiger importStorage](#importStorage) | Apply code execution to vtiger |
+| [vtiger permissions](#permissions) | Apply code execution to vtiger |
+| [vtiger console](#console) | Apply code execution to vtiger |
+| [vtiger client](#client) | Apply code execution to vtiger |
+| [vtiger init](#init) | Apply code execution to vtiger |
+| [vtiger ping](#ping) | Apply code execution to vtiger |
 
 
 <hr/>

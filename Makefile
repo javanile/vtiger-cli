@@ -11,6 +11,11 @@ install:
 build-docs:
 	@php -f script/build-docs.php
 
+release: build-docs
+	@git add .
+	@git commit -am "Release "
+	echo $$((1 + 1))
+
 ## =====
 ## Tests
 ## =====

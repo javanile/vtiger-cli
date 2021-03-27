@@ -31,7 +31,7 @@ try {
             $summary = trim($docBlock->getSummary(), '.');
             $description = $docBlock->getDescription();
             $usage = $docBlock->getTagsByName('usage')[0];
-            $toc .= '| ['.$method.'](#'.strtr($method, ' ', '-').') | '.$summary.' |'."\n";
+            $toc .= '| [vtiger '.$method.'](#'.strtr($method, ' ', '-').') | '.$summary.' |'."\n";
             $documentation .= '### ' . $summary . "\n\n";
             $documentation .= $description . "\n\n";
             $documentation .= "#### Usage \n\n```\n" . $usage->getDescription() . "\n```\n\n";
