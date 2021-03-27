@@ -13,8 +13,8 @@ build-docs:
 
 release: build-docs
 	@git add .
-	@git commit -am "Release "
-	@echo $$((($$(date +%s)-1609455600)/86400))
+	@git commit -am "Release VT$$((($$(date +%s)-1609455600)/86400))" || true
+	@git push
 
 ## =====
 ## Tests
