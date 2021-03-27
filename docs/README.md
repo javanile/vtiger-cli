@@ -1,6 +1,6 @@
-# Documentation
+## Documentation
 
-## The Commands
+### The Commands
 
 
 
@@ -284,5 +284,4 @@
 
 
 
-## The `vtiger.json` schema
-
+### The `vtiger.json` schema

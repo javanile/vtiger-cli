@@ -52,8 +52,8 @@ try {
 $readme = file_get_contents('./docs/README.md');
 
 $updatedReadme = preg_replace(
-    '/## The Commands.*## The `vtiger.json` schema/s',
-    '## The Commands'."\n\n".$toc."\n\n".$documentation."\n\n".'## The `vtiger.json` schema',
+    '/### The Commands.*## The `vtiger.json` schema/s',
+    '### The Commands'."\n\n".$toc."\n\n".$documentation."\n\n".'### The `vtiger.json` schema',
     $readme
 );
 
