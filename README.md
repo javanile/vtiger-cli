@@ -8,9 +8,7 @@
 
 Use vtiger-cli is very simple, it adds a professional touch and a lot of time saved to your work.
 
-### Get Started
-
-#### Installation
+### Installation
 
 PowerShell (Windows) 
 
@@ -53,8 +51,6 @@ Now, type the follow command to check errors, and goog work!
 ```bash
 $ vtiger info
 ```
-
-## Official Documentation
 
 ### Requirements
 
