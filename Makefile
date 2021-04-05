@@ -16,6 +16,13 @@ release: build-docs
 	@git commit -am "Release VT$$((($$(date +%s)-1609455600)/86400))" || true
 	@git push
 
+demo:
+	mkdir -p $$HOME/bin
+	rm -f $$HOME/bin/vtiger || true
+	ln -s $$PWD/bin/vtiger $$HOME/bin/
+	#asciinema rec -c "ghostplay script/demo.sh"
+	ghostplay script/demo.sh
+
 ## =====
 ## Tests
 ## =====
