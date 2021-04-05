@@ -4,7 +4,7 @@ namespace Javanile\VtigerCli;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Export
+class ImportExport
 {
     /**
      * Config handler.
@@ -31,6 +31,79 @@ class Export
     {
         $this->config = $config;
         $this->state = $state;
+    }
+
+    /**
+     * Add EntityMethod on vtiger database.
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     * @return bool
+     */
+    public function import($file, OutputInterface $output)
+    {
+        $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        switch ($type) {
+            case 'sql':
+                $output->info("Import SQL: {$file}");
+                break;
+        }
+    }
+
+    /**
+     * Add EntityMethod on vtiger database.
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     * @return bool
+     */
+    public function importDatabase($file, OutputInterface $output)
+    {
+        $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        switch ($type) {
+            case 'sql':
+                $output->info("Import SQL: {$file}");
+                break;
+        }
+    }
+
+    /**
+     * Add EntityMethod on vtiger database.
+     *
+     * @param $module
+     * @param $callable
+     * @param OutputInterface $output
+     * @return bool
+     */
+    public function importStorage($file, OutputInterface $output)
+    {
+        $type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        switch ($type) {
+            case 'zip':
+                $output->info("Import SQL: {$file}");
+                break;
+
+            case 'tar':
+                $output->info("Import SQL: {$file}");
+                break;
+
+            case 'tar.gz':
+                $output->info("Import SQL: {$file}");
+                break;
+        }
+    }
+
+    /**
+     *
+     */
+    public function credits()
+    {
+
     }
 
     /**

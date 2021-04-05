@@ -68,6 +68,14 @@ class Config
     }
 
     /**
+     *
+     */
+    public function set($key, $value)
+    {
+        $this->config[$key] = $value;
+    }
+
+    /**
      * @return string
      */
     public function getConfigFile()
@@ -266,7 +274,7 @@ class Config
      */
     public function saveConfig(OutputInterface $output)
     {
-        $output->writeln('update config file');
+        $output->writeln("Update 'vtiger.json' file...");
 
         $config = json_encode(
             $this->config,

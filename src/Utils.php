@@ -68,17 +68,24 @@ class Utils
         }
 
         $position = $this->choice(
-            'Where is placed your CRM?',
+            'Where is placed your Vtiger CRM?',
             ['Local: Installed on this machine', 'Remote: installed into a remote server']
         );
 
-        $this->output->writeln('Looking for '.$position.'...');
+        $this->output->writeln('Looking for '.$position);
 
         if ($position[0] == 'L') {
-            $this->ask('In which directory is the CRM located? ');
+            $vtigerDir = $this->ask('In which directory is the Vtiger CRM located? ');
+            if (is_dir($vtigerDir) && file_exists($vtigerDir.'/vtigerversion.php')) {
+                $this->config->set('vtiger_dir', realpath($vtigerDir));
+            } else {
+                return $this->output->error("Directory '{$vtigerDir}' is not right. Vtiger CRM was not found.");
+            }
         } else {
             $this->ask('In which URL is the CRM located? ');
         }
+
+        $this->config->saveConfig($this->output);
     }
 
     /**
