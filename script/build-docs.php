@@ -26,11 +26,16 @@ try {
             if ($method == '__construct' || $reflection->class != $class) {
                 continue;
             }
-            echo "> {$class}::{$method}\n";
+            echo ">> {$class}::{$method}\n";
             $docBlock = $docBlockFactory->create($reflection->getDocComment());
             $summary = trim($docBlock->getSummary(), '.');
             $description = $docBlock->getDescription();
             $usage = $docBlock->getTagsByName('usage')[0];
+            $ignore = $docBlock->getTagsByName('ignore')[0];
+            if (empty($usage) || $ignore) {
+                echo " - Ignored!\n";
+                continue;
+            }
             $toc .= '| [vtiger '.$method.'](#'.strtr($method, ' ', '-').') | '.$summary.' |'."\n";
             $documentation .= '### ' . $summary . "\n\n";
             $documentation .= $description . "\n\n";

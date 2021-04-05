@@ -4,6 +4,9 @@ namespace Javanile\VtigerCli;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use PDO;
+use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Question\Question;
 
 class Utils
 {
@@ -23,16 +26,59 @@ class Utils
     protected $state;
 
     /**
+     * State handler.
+     */
+    protected $interactive;
+
+    /**
+     * State handler.
+     */
+    protected $input;
+
+    /**
+     * State handler.
+     */
+    protected $output;
+
+    /**
      * Apply constructor.
      *
      * @param $config
      * @param $state
      */
-    public function __construct($config, $database)
+    public function __construct($config, $database, $interactive, $input, $output)
     {
         $this->config = $config;
         $this->database = $database;
+        $this->interactive = $interactive;
+        $this->input = $input;
+        $this->output = $output;
         //$this->state = $state;
+    }
+
+    /**
+     *
+     */
+    public function init()
+    {
+        if ($this->config->hasConfigFile()) {
+            if (!$this->confirm("File 'vtiger.json' already exists, did you want update it? ")) {
+                return;
+            }
+        }
+
+        $position = $this->choice(
+            'Where is placed your CRM?',
+            ['Local: Installed on this machine', 'Remote: installed into a remote server']
+        );
+
+        $this->output->writeln('Looking for '.$position.'...');
+
+        if ($position[0] == 'L') {
+            $this->ask('In which directory is the CRM located? ');
+        } else {
+            $this->ask('In which URL is the CRM located? ');
+        }
     }
 
     /**
@@ -106,5 +152,37 @@ class Utils
         }
 
         return crypt($password, $salt);
+    }
+
+    /**
+     *
+     */
+    public function confirm($message)
+    {
+        $question = new ConfirmationQuestion($message);
+
+        return $this->interactive->ask($this->input, $this->output, $question);
+    }
+
+    /**
+     *
+     */
+    public function choice($message, $options)
+    {
+        $question = new ChoiceQuestion($message, $options, 0);
+        $question->setErrorMessage('Response %s is invalid.');
+
+        return $this->interactive->ask($this->input, $this->output, $question);
+    }
+
+    /**
+     *
+     */
+    public function ask($message)
+    {
+        $question = new Question($message);
+        //$question->setErrorMessage('Response %s is invalid.');
+
+        return $this->interactive->ask($this->input, $this->output, $question);
     }
 }

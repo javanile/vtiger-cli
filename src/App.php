@@ -34,7 +34,7 @@ class App extends SillyApplication
      */
     public function __construct($cwd)
     {
-        parent::__construct('vtiger-cli', '0.0.1');
+        parent::__construct('vtiger-cli', '0.2.0');
 
         $this->config = new Config($cwd);
         $this->database = new Database($this->config);
@@ -56,8 +56,29 @@ class App extends SillyApplication
     }
 
     /**
+     * Init and take control of CRM.
      *
      * @usage
+     *
+     * @param $operation
+     * @param $args
+     * @param OutputInterface $output
+     *
+     * @return integer
+     */
+    public function init(InputInterface $input, OutputInterface $output)
+    {
+        $interactive = $this->getHelperSet()->get('question');
+        $utils = new Utils($this->config, $this->database, $interactive, $input, $output);
+
+        return $utils->init();
+    }
+
+    /**
+     * Get CRM instance information.
+     *
+     * @ignore
+     * @usage vtiger info
      *
      * @param OutputInterface $output
      */
@@ -73,6 +94,7 @@ class App extends SillyApplication
     }
 
     /**
+     * @ignore
      * @usage
      * @param OutputInterface $output
      */
@@ -103,6 +125,7 @@ class App extends SillyApplication
 
     /**
      * Add EntityMethod on vtiger database for triggering into workflow.
+     * @ignore
      * @usage
      *
      * @param $module
@@ -125,6 +148,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -141,6 +165,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -157,6 +182,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -173,6 +199,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -189,6 +216,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -206,6 +234,7 @@ class App extends SillyApplication
 
     /**
      * Apply code execution to vtiger.
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -223,6 +252,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -241,6 +271,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -258,6 +289,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -282,6 +314,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @ignore
      * @usage
      *
      * @param $callable
@@ -302,6 +335,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
+     * @ignore
      * @usage
      *
      * @param $operation
@@ -324,28 +358,7 @@ class App extends SillyApplication
     /**
      * Apply code execution to vtiger.
      *
-     * @usage
-     *
-     * @param $operation
-     * @param $args
-     * @param OutputInterface $output
-     *
-     * @return integer
-     */
-    public function init($operation, $args, InputInterface $input, OutputInterface $output)
-    {
-        $this->config->loadConfig($output);
-        $this->config->loadVtigerDir($output);
-
-        $utils = new Utils($this->config, $this->database);
-        $client = new Client($this->config, $utils);
-
-        return $client->call($operation, $args, $input, $output);
-    }
-
-    /**
-     * Apply code execution to vtiger.
-     *
+     * @ignore
      * @usage
      *
      * @param $operation

@@ -4,6 +4,9 @@ namespace Javanile\VtigerCli;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+
 
 class Config
 {
@@ -70,6 +73,14 @@ class Config
     public function getConfigFile()
     {
         return $this->configFile;
+    }
+
+    /**
+     *
+     */
+    public function hasConfigFile()
+    {
+        return file_exists($this->configFile);
     }
 
     /**

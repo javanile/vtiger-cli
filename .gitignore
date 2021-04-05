@@ -6,3 +6,4 @@ tests/fixtures/tmp
 composer.lock
 coverage.xml
 vtiger.lock
+.pwd.var

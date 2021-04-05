@@ -46,5 +46,9 @@ services:
     <<: *vtiger
     entrypoint: ['./build.sh']
 
+  build-docs:
+    <<: *vtiger
+    entrypoint: ['php', '-f', './script/build-docs.php']
+
 volumes:
   mysql:

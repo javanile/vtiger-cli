@@ -39,6 +39,7 @@ use Javanile\VtigerCli\Output;
 
 $app = new App(getcwd());
 
+$app->command('init', [$app, 'init']);
 $app->command('info', [$app, 'info']);
 
 $app->command('apply [Callable]', [$app, 'apply']);
