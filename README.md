@@ -25,7 +25,7 @@ C:\Users\SamSempiol> curl git.io/vtiger.cmd -o setup.cmd & setup
 Linux / macOS
 
 ```bash
-$ curl -fsSL git.io/vtiger | sudo bash -
+$ curl -fsSL git.io/vtiger | bash -
 ```
 
 ### Examples
