@@ -10,13 +10,13 @@ Use vtiger-cli is very simple, it adds a professional touch and a lot of time sa
 
 ### Installation
 
-PowerShell (Windows) 
+For PowerShell (Windows) 
 
 ```PowerSchell
-PS C:\Users\SamSempiol> curl git.io/vtiger.ps1 -o setup; .\setup
+PS C:\Users\SamSempiol> curl git.io/vtiger.ps1 -o setup.ps1; .\setup.ps1
 ```
 
-CMD.EXE (Windows) 
+Fir cmd.exe (Windows) 
 
 ```cmd
 C:\Users\SamSempiol> curl git.io/vtiger.cmd -o setup.cmd & setup
