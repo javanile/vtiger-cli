@@ -35,11 +35,11 @@ echo '          /____/             '
 echo '                             '
 
 bin=/usr/local/bin/vtiger
-url=https://javanile.github.io/vtiger-cli/dist/vtiger-cli.phar
+url=https://github.com/javanile/vtiger-cli/raw/main/dist/vtiger-cli.phar
 
 root () { [[ ${EUID} -ne 0 ]] && sudo $* || $*; }
 
-echo "Installing vtiger for all system users"
+echo "Installing console tool to all system users"
 
 root curl -fsSLo "${bin}" "${url}"
 root chmod +x "${bin}"
